@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -10,6 +10,8 @@ import { FormSectionComponent } from "./components/form-section/form-section.com
 import { PeopleSectionComponent } from "./components/people-section/people-section.component";
 import { CodeManagementComponent } from "./components/code-management/code-management.component";
 import { CensusMetricsComponent } from "./components/census-metrics/census-metrics.component";
+import { FormsModule } from '@angular/forms';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 //Libreria de diseño de formulario
 
@@ -22,9 +24,15 @@ import { CensusMetricsComponent } from "./components/census-metrics/census-metri
     FormSectionComponent,
     PeopleSectionComponent,
     CodeManagementComponent,
-    CensusMetricsComponent
+    CensusMetricsComponent,
+    HomePageComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
