@@ -1,5 +1,15 @@
 # ECSFrontEnd
 
+# Para la generación automatica de los formularios usaremos Angular6-json-schema-form
+
+https://www.npmjs.com/package/angular6-json-schema-form
+
+#Ejemplo de uso 
+https://hamidihamza.com/Angular6-json-schema-form/?set=asf&example=asf-simple&framework=bootstrap-4&language=en
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
 ## Development server
