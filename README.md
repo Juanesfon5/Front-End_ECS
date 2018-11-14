@@ -1,6 +1,6 @@
 # ECSFrontEnd
 
-# Para la generación automatica de los formularios usaremos Angular6-json-schema-form
+Para la generación automatica de los formularios usaremos Angular6-json-schema-form
 
 https://www.npmjs.com/package/angular6-json-schema-form
 
