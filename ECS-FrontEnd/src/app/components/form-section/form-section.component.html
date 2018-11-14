@@ -1,3 +1,14 @@
-<p>
-  form-section works!
-</p>
+<div>
+  <h1 style="text-align: center">ECS Bolumbia</h1>
+</div>
+<app-header></app-header>
+<div class="container">
+
+  <form class="form-signin">
+
+    <div class="form-group" *ngFor="let x of preguntas">
+      <p>{{x.Name}}</p>
+    </div>
+
+  </form>
+</div>  

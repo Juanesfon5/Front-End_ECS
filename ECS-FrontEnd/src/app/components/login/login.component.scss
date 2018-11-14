@@ -1,18 +1,19 @@
 .wrapper{
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 80px;
     align-self: center;
     height: 100%;
 }
 
 .form-signin {
+    align-self: center;
     position: relative;
     max-width: 380px;
     padding: 15px 35px 45px;
     margin: 0 auto;
     background-color: rgba(238, 238, 238, 0.829);
     border: 1px solid rgba(0,0,0,0.1);
-    right: 40px;
+    right: 10px;
 }
 
 .form-control{

@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-section.component.scss']
 })
 export class FormSectionComponent implements OnInit {
-
+  preguntas = [
+    {
+    "Name" : "Alfreds Futterkiste",
+    "Country" : "Germany",
+    "City" : "Berlin"
+    },
+    {
+      "Name" : "Alfreds Futterkiste",
+      "Country" : "Germany",
+      "City" : "Berlin"
+    }
+  ];
+  
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    
   }
 
 }
