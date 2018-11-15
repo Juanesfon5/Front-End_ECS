@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormlyFormOptions, FormlyFieldConfig } from "@ngx-formly/core";
 import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
+import { userInfo } from "os";
+import { FormService } from '../../services/form.service';
 
 @Component({
   selector: "app-form-section",
@@ -9,56 +11,30 @@ import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
   styleUrls: ["./form-section.component.scss"]
 })
 export class FormSectionComponent implements OnInit {
-  form = new FormGroup({});
-  model: any = {
-    "1": "Comuna",
-    "2": "Numero de orden",
-    "3": "",
-    "4": "Piso",
-    "5": "Nombre",
-    multipleChoicesList: "1"
-  };
-  options: FormlyFormOptions = {};
+  messageForm: FormGroup;
+  submitted = false;
+  success = false;
+  response_login = {};
 
-  fields: FormlyFieldConfig[] = [
-    this.formlyJsonschema.toFieldConfig({
-      number: 1,
-      type: "object",
-      properties: {
-        "1": {
-          type: "string",
-          title: "NOMBRE DE LA COMUNA",
-          response: ""
-        },
-        "2": {
-          type: "string",
-          title: "N\u00daMERO DE ORDEN DE LA VIVIENDA",
-          response: ""
-        },
-        "3": {
-          type: "integer",
-          title: "NUMERO DEL DOMICILIARIO",
-          response: ""
-        },
-        "4": {
-          type: "string",
-          title: "PISO",
-          response: ""
-        },
-        "5": {
-          type: "string",
-          title: "NOMBRE DE LA CALLE O CAMINO",
-          response: ""
-        }
-      }
-    })
-  ];
+  constructor(
+    private formServ: FormService) { }
 
-  constructor(private formlyJsonschema: FormlyJsonschema) {}
-
-  ngOnInit() {}
-
-  submit() {
-    alert(JSON.stringify(this.model));
+  ngOnInit() {
   }
+
+  onSubmit(){
+    this.submitted = true;
+    if (this.messageForm.invalid) {
+      return;
+    }
+  }
+
+  confirmar_credenciales(){
+    const credenciales = {};
+    this.response_login = this.formServ.get_credenciales(credenciales);
+    this.formServ.confirmar_envio(this.response_login);
+
+  }
+
+  
 }

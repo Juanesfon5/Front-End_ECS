@@ -14,10 +14,11 @@ export class UserService {
     private router: Router) { }
 
     public authenticate(user: Object){
-      console.log("Autenticando...")
+      console.log("Autenticando...");
+      console.log(user);
       let headers = new HttpHeaders();
       headers = headers.append('Content-Type', 'application/json');
-      return this.httpClient.post(`${this.endpoint}ECS/Api/v1/user/login"`, user, { headers }).subscribe(data=> {
+      return this.httpClient.post(`${this.endpoint}ECS/Api/v1/user/login`, user, { headers }).subscribe(data=> {
         console.log(data["access_token"]);
       })
     }

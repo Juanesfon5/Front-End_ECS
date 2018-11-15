@@ -7,14 +7,14 @@
       <form [formGroup]="messageForm" class= "form-signin" (ngSubmit)="onSubmit()">
         <h2 class="form-signin-header">Inicie sesión</h2>
         
-        <input type="text" formControlName="ecs" class="form-control" placeholder="ECS">
-        <div *ngIf="submitted && messageForm.controls.ecs.errors">
-          <div *ngIf="messageForm.controls.ecs.errors.required">Es obligatorio especificar ECS</div>
+        <input type="text" formControlName="ECN" class="form-control" placeholder="ECN">
+        <div *ngIf="submitted && messageForm.controls.ECN.errors">
+          <div *ngIf="messageForm.controls.ECN.errors.required">Es obligatorio especificar ECS</div>
         </div>
 
-        <input type="text" formControlName="cnf" class="form-control" placeholder="CNF">
-        <div *ngIf="submitted && messageForm.controls.cnf.errors">
-          <div *ngIf="messageForm.controls.cnf.errors.required">Es obligatorio especificar CNF</div>
+        <input type="text" formControlName="CFN" class="form-control" placeholder="CFN">
+        <div *ngIf="submitted && messageForm.controls.CFN.errors">
+          <div *ngIf="messageForm.controls.CFN.errors.required">Es obligatorio especificar CNF</div>
         </div>
         <input class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
       </form>

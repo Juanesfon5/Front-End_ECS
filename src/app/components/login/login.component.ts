@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
-      ecs: ['', Validators.required],
-      cnf: ['', Validators.required]
+      ECN: ['', Validators.required],
+      CFN: ['', Validators.required]
     });
   }
 
