@@ -17,6 +17,12 @@ import { FormlyBootstrapModule } from "@ngx-formly/bootstrap";
 import { ArrayTypeComponent } from "./array.type";
 
 //Libreria de diseño de formulario
+//Servicios
+import { UserService } from "./services/user.service";
+import { AnalistService } from "./services/analist.service";
+import { CollectorService } from "./services/collector.service";
+import { FormService } from "./services/form.service";
+import { GeneralService } from "./services/general.service";
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -90,7 +96,13 @@ export function maxValidationMessage(err, field) {
       ]
     })
   ],
-  providers: [],
+  providers: [
+    UserService,
+    AnalistService,
+    CollectorService,
+    FormService,
+    GeneralService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
