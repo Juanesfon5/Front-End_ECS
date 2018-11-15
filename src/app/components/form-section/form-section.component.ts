@@ -11,11 +11,11 @@ import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 export class FormSectionComponent implements OnInit {
   form = new FormGroup({});
   model: any = {
-    1: "Comuna",
-    2: "Numero de orden",
-    3: "",
-    4: "Piso",
-    5: "Nombre",
+    "1": "Comuna",
+    "2": "Numero de orden",
+    "3": "",
+    "4": "Piso",
+    "5": "Nombre",
     multipleChoicesList: "1"
   };
   options: FormlyFormOptions = {};
@@ -49,16 +49,6 @@ export class FormSectionComponent implements OnInit {
           type: "string",
           title: "NOMBRE DE LA CALLE O CAMINO",
           response: ""
-        },
-        multipleChoicesList: {
-          type: "array",
-          title: "A multiple choices list",
-          items: {
-            type: "string",
-            enum: ["foo", "bar", "fuzz", "qux", "kappa"]
-          },
-          uniqueItems: true,
-          add: null
         }
       }
     })
