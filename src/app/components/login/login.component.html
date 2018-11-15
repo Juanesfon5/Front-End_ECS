@@ -7,20 +7,16 @@
       <form [formGroup]="messageForm" class= "form-signin" (ngSubmit)="onSubmit()">
         <h2 class="form-signin-header">Inicie sesión</h2>
         
-        <input type="text" formControlName="username" class="form-control" placeholder="User">
+        <input type="text" formControlName="username" class="form-control" placeholder="ECS">
         <div *ngIf="submitted && messageForm.controls.username.errors">
-          <div *ngIf="messageForm.controls.username.errors.required">Es obligatorio especificar nombre de usuario</div>
+          <div *ngIf="messageForm.controls.username.errors.required">Es obligatorio especificar ECS</div>
         </div>
 
-        <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+        <input type="password" formControlName="password" class="form-control" placeholder="CNF">
         <div *ngIf="submitted && messageForm.controls.password.errors">
-          <div *ngIf="messageForm.controls.password.errors.required">Es obligatorio especificar la contraseña</div>
+          <div *ngIf="messageForm.controls.password.errors.required">Es obligatorio especificar CNF</div>
         </div>
-
-        <a routerLink="home">
-          <button class="btn btn-primary btn-block" type="submit"> Iniciar Sesión </button>
-        </a> 
-
+        <input class="btn btn-primary btn-block" type="submit" value="Iniciar Sesión">
       </form>
     </div>
   </ol>
