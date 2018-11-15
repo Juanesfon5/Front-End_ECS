@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +14,29 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private userServ: UserService) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      ecs: ['', Validators.required],
+      cnf: ['', Validators.required]
     });
   }
 
   onSubmit(){
-    console.log("Test")
-    this.router.navigate(["home"])
+    this.submitted = true;
+    if (this.messageForm.invalid) {
+      return;
+    }
+
+    const user = {};
+    for (var key in this.messageForm.controls) {
+      if (this.messageForm.controls.hasOwnProperty(key)) {
+        user[key] = this.messageForm.controls[key].value;
+      }
+    }
+    this.userServ.authenticate(user);
+    this.success = true;
   }
 
 }

@@ -15,6 +15,8 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 import { FormlyModule } from "@ngx-formly/core";
 import { FormlyBootstrapModule } from "@ngx-formly/bootstrap";
 import { ArrayTypeComponent } from "./array.type";
+import { HttpClientModule } from '@angular/common/http';
+
 
 //Libreria de diseño de formulario
 //Servicios
@@ -57,6 +59,7 @@ export function maxValidationMessage(err, field) {
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
