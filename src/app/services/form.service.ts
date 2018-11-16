@@ -7,7 +7,8 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class FormService {
-  readonly endpoint = environment.urlBase;
+  readonly endpointCurrentEntity = environment.endpointCurrentEntity;
+  readonly endpointFormConfirm = environment.endpointFormConfirm;
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
@@ -17,7 +18,9 @@ export class FormService {
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     return this.httpClient
-      .post(`${this.endpoint}/ECS/Api/v1/current/entity`, { headers })
+      .post(`${this.endpointCurrentEntity}`, {
+        headers
+      })
       .subscribe(data => {
         console.log(credenciales["ECN"]);
       });
@@ -29,11 +32,13 @@ export class FormService {
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     return this.httpClient
-      .post(`${this.endpoint}/ECS/Api/v1/form/confirm`, credenciales, {
-        headers
-      })
-      .subscribe(data => {
-        console.log(credenciales["ECN"]);
-      });
+      .post(
+        `${this.endpointFormConfirm}/ECS/Api/v1/form/confirm`,
+        credenciales,
+        {
+          headers
+        }
+      )
+      .subscribe(data => {});
   }
 }
