@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../services/user.service";
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   messageForm: FormGroup;
@@ -14,16 +13,17 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userServ: UserService) { }
+    private userServices: UserService
+  ) {}
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
-      ECN: ['', Validators.required],
-      CFN: ['', Validators.required]
+      ECN: ["", Validators.required],
+      CFN: ["", Validators.required]
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
     if (this.messageForm.invalid) {
       return;
@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
         user[key] = this.messageForm.controls[key].value;
       }
     }
-    this.userServ.authenticate(user);
+    this.userServices.authenticate(user).subscribe(data => {
+      console.log(data["access_token"]);
+    });
     this.success = true;
   }
-
 }
