@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
+import { CookieService } from "angular2-cookie/core";
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userServices: UserService
+    private userServices: UserService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit() {
@@ -36,8 +39,22 @@ export class LoginComponent implements OnInit {
       }
     }
     this.userServices.authenticate(user).subscribe(data => {
-      console.log(data["access_token"]);
+      this.setCookies("access_token", data["access_token"]);
+      this.setCookies("refresh_token", data["refresh_token"]);
     });
     this.success = true;
+  }
+
+  //Manejo de cookies
+  setCookies(key, value) {
+    this.cookieService.put(key, value);
+  }
+
+  getCookies(key) {
+    return this.cookieService.get(key);
+  }
+
+  delCookies(key) {
+    this.cookieService.remove(key);
   }
 }

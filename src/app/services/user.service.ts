@@ -13,7 +13,7 @@ export class UserService {
   
   */
   readonly endpointUserLogin = environment.endpointUserLogin;
-
+  readonly endpointUserTokenRefresh = environment.endpointUserTokenRefresh;
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   /* 
@@ -30,24 +30,17 @@ export class UserService {
     });
   }
 
-  /* 
-    Aqui estan los servicios
-    https://github.com/josearangos/ECS-Backend/issues/13
-  
- 
-
   public tokenRefresh(refresh_token: Object) {
     console.log("tokenRefresh...");
     console.log(refresh_token);
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     return this.httpClient.post(
-      `${this.endpoint}ECS/Api/v1/user/tokenRefresh`,
+      `${this.endpointUserTokenRefresh}`,
       refresh_token,
       {
         headers
       }
     );
   }
-   */
 }

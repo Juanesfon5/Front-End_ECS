@@ -26,6 +26,9 @@ import { CollectorService } from "./services/collector.service";
 import { FormService } from "./services/form.service";
 import { GeneralService } from "./services/general.service";
 
+//Manejo de cookies
+import { CookieService } from "angular2-cookie/services/cookies.service";
+
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
 }
@@ -101,6 +104,7 @@ export function maxValidationMessage(err, field) {
     })
   ],
   providers: [
+    CookieService,
     UserService,
     AnalistService,
     CollectorService,
