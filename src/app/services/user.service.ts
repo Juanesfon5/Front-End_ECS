@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Router } from "@angular/router";
+import { CookieService } from "angular2-cookie/core";
 
 @Injectable({
   providedIn: "root"
@@ -14,7 +15,11 @@ export class UserService {
   */
   readonly endpointUserLogin = environment.endpointUserLogin;
   readonly endpointUserTokenRefresh = environment.endpointUserTokenRefresh;
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   /* 
     Aqui estan los servicios
@@ -30,11 +35,13 @@ export class UserService {
     });
   }
 
-  public tokenRefresh(refresh_token: Object) {
+  public  tokenRefresh() {
     console.log("tokenRefresh...");
-    console.log(refresh_token);
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
+    let refresh_token = this.cookieService.get("refresh_token");
+    let Bacces = "Bearer " + refresh_token;
+    headers = headers.append("Authorization", Bacces);
     return this.httpClient.post(
       `${this.endpointUserTokenRefresh}`,
       refresh_token,

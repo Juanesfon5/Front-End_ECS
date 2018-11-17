@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { CookieService } from "angular2-cookie/core";
-
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -12,7 +11,7 @@ export class LoginComponent implements OnInit {
   messageForm: FormGroup;
   submitted = false;
   success = false;
-
+  token;
   constructor(
     private formBuilder: FormBuilder,
     private userServices: UserService,
@@ -20,6 +19,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(localStorage.getItem("ECN"));
     this.messageForm = this.formBuilder.group({
       ECN: ["", Validators.required],
       CFN: ["", Validators.required]
@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
     this.userServices.authenticate(user).subscribe(data => {
       this.setCookies("access_token", data["access_token"]);
       this.setCookies("refresh_token", data["refresh_token"]);
+      localStorage.setItem("ECN", user["ECN"]);
+      localStorage.setItem("CFN", user["CFN"]);
     });
     this.success = true;
   }

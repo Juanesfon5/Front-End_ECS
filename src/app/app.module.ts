@@ -25,6 +25,7 @@ import { CollectorService } from "./services/collector.service";
 import { FormService } from "./services/form.service";
 import { GeneralService } from "./services/general.service";
 
+
 //Manejo de cookies
 import { CookieService } from "angular2-cookie/services/cookies.service";
 
