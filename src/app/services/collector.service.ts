@@ -14,6 +14,8 @@ export class CollectorService {
   readonly endpointCollectorTokenRefresh =
     environment.endpointCollectorTokenRefresh;
   readonly endpointShowCodes = environment.endpointShowCodes;
+  readonly endpointDeliverCode = environment.endpointDeliverCode;
+
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -71,4 +73,13 @@ export class CollectorService {
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     return this.httpClient.get(`${this.endpointShowCodes}`, params);
   }
+
+  public asignarCodigos(credenciales: Object){
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
+    
+    return this.httpClient.put(`${this.endpointDeliverCode}`,credenciales, headers);
+  }
+
 }
