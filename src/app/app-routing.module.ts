@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'Form1',
     component: FormSectionComponent
-  }
+  } 
 ];
 
 @NgModule({
