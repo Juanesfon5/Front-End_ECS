@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
       ECN: ["", Validators.required],
       CFN: ["", Validators.required]
     });
+    
   }
 
   onSubmit() {
