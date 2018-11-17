@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 import { FormlyFormOptions, FormlyFieldConfig } from "@ngx-formly/core";
 import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 import { FormService } from "../../services/form.service";
+import { GeneralService} from "../../services/general.service";
 
 @Component({
   selector: "app-form-section",
@@ -15,13 +16,12 @@ export class FormSectionComponent implements OnInit {
   success = false;
   response_login = {};
 
-  constructor(private formServ: FormService) {}
+  constructor(private formServ: FormService, private generalService: GeneralService) {}
 
   ngOnInit() {
-    this.formServ.get_credenciales().subscribe(data => {
+    this.generalService.get_credenciales().subscribe(data => {
       this.response_login = data;
-      console.log("ya lo tengo");
-      console.log(data);
+      console.log(data["isUser"]);
     });
     //this.conseguir_cedulas();
   }
@@ -33,7 +33,7 @@ export class FormSectionComponent implements OnInit {
     }
   }
 
-  confirmar_credenciales() {
+  confirmar_envioFormulario() {
     this.formServ.confirmar_envio(this.response_login).subscribe(data => {
       console.log(data);
     });

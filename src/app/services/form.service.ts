@@ -9,7 +9,6 @@ import { CookieService } from "angular2-cookie/core";
   providedIn: "root"
 })
 export class FormService {
-  readonly endpointCurrentEntity = environment.endpointCurrentEntity;
   readonly endpointFormConfirm = environment.endpointFormConfirm;
   readonly endpointFamliyIdentifiers = environment.endpointFamliyIdentifiers;
   readonly endpointFormFindSection = environment.endpointFormFindSection;
@@ -20,23 +19,7 @@ export class FormService {
     private cookieService: CookieService
   ) {}
 
-  public get_credenciales() {
-    console.log("Consiguiendo...");
-    let headers = new HttpHeaders();
-    headers = headers.append("Content-Type", "application/json");
-    let access_token = this.cookieService.get("access_token");
-    
-    // Llamaria al metodo tokenRefresh(refresh_token)
-
-    let Bacces = "Bearer " + access_token;
-    headers = headers.append("Authorization", Bacces);
-
-    return this.httpClient.post(
-      `${this.endpointCurrentEntity}`,
-      { access_token: access_token },
-      { headers }
-    );
-  }
+ 
 
   public confirmar_envio(credenciales: Object) {
     console.log("Consiguiendo...");
