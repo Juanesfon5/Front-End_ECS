@@ -19,11 +19,12 @@ export class FormSectionComponent implements OnInit {
   constructor(private formServ: FormService, private generalService: GeneralService) {}
 
   ngOnInit() {
-    this.generalService.get_credenciales().subscribe(data => {
-      this.response_login = data;
-      console.log(data["isUser"]);
-    });
+    this.response_login = {
+      "ECN": localStorage.getItem("ECN"),
+      "CFN": localStorage.getItem("CFN")
+    };
     //this.conseguir_cedulas();
+    this.conseguir_seccion(1);
   }
 
   onSubmit() {
@@ -45,9 +46,14 @@ export class FormSectionComponent implements OnInit {
     });
   }
 
-  conseguir_seccion() {
+  conseguir_seccion(numero: any) {
+    let s_formulario = {
+      "number": numero,
+      "ECN": localStorage.getItem("ECN"),
+      "CFN": localStorage.getItem("CFN")
+    };
     const usr = this.formServ
-      .conseguir_seccion(this.response_login)
+      .conseguir_seccion(s_formulario)
       .subscribe(data => {
         console.log(data);
       });
