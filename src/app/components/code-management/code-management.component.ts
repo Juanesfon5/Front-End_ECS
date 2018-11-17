@@ -17,4 +17,5 @@ export class CodeManagementComponent implements OnInit {
       console.log(data);
     });
   }
+  setDeliverCredential() {}
 }
