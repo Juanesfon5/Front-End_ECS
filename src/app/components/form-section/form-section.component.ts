@@ -15,9 +15,14 @@ export class FormSectionComponent implements OnInit {
   success = false;
   response_login = {};
 
-  constructor(private formServ: FormService) {}
+  constructor(private formServ: FormService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formServ.get_credenciales()
+      .subscribe(data => {
+        this.response_login = data;
+      });
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -27,8 +32,24 @@ export class FormSectionComponent implements OnInit {
   }
 
   confirmar_credenciales() {
-    const credenciales = {};
-    this.response_login = this.formServ.get_credenciales(credenciales);
-    this.formServ.confirmar_envio(this.response_login);
+    this.formServ.confirmar_envio(this.response_login)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
+  conseguir_cedulas() {
+    this.formServ.pedir_cedulas(this.response_login)
+    .subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  conseguir_seccion(){
+    const usr = 
+    this.formServ.conseguir_seccion(this.response_login)
+    .subscribe(data => {
+      console.log(data);
+    });
   }
 }
