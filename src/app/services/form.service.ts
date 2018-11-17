@@ -13,6 +13,9 @@ export class FormService {
   readonly endpointFormConfirm = environment.endpointFormConfirm;
   readonly endpointFamliyIdentifiers = environment.endpointFamliyIdentifiers;
   readonly endpointFormFindSection = environment.endpointFormFindSection;
+  readonly endpointGetFormMember = environment.endpointGetFormMember;
+  readonly endpointInsertUpdateAnswersMember = environment.endpointInsertUpdateAnswersMember;
+  readonly endpointFormUpdateSection =environment.endpointFormUpdateSection;
 
   constructor(
     private httpClient: HttpClient,
@@ -54,4 +57,58 @@ export class FormService {
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     return this.httpClient.get(`${this.endpointFormFindSection}`, params);
   }
+
+  public pedir_respuestaPersona(credenciales: Object, number: String) {
+    console.log("Consiguiendo respuestas de una persona...");
+    credenciales = {
+      "CFN": credenciales["CFN"],
+      "ECN": credenciales["ECN"],
+      "idNumber": number
+    }
+    let headers = new HttpHeaders();
+    const httpParams: HttpParamsOptions = {
+      fromObject: credenciales
+    } as HttpParamsOptions;
+    headers = headers.append("Content-Type", "application/json");
+    //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
+    return this.httpClient.post(`${this.endpointGetFormMember}`,credenciales, {headers});
+  }
+
+  public actualizar_respuestaFormulario(credenciales: Object, number: String, form: any) {
+    console.log("Actualizando respuestas del formulario...");
+    credenciales = {
+      "CFN": credenciales["CFN"],
+      "ECN": credenciales["ECN"],
+      "idNumber": number,
+      "questions":  form
+    }
+    let headers = new HttpHeaders();
+    const httpParams: HttpParamsOptions = {
+      fromObject: credenciales
+    } as HttpParamsOptions;
+    headers = headers.append("Content-Type", "application/json");
+    //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
+
+    return this.httpClient.post(`${this.endpointInsertUpdateAnswersMember}`,credenciales, {headers});
+  }
+
+  public actualizar_seccionEspecifica(credenciales: Object, number: any, form: any) {
+    console.log("Actualizando respuestas de una seccion...");
+    credenciales = {
+      "CFN": credenciales["CFN"],
+      "ECN": credenciales["ECN"],
+      "number": number,
+    }
+
+    let headers = new HttpHeaders();
+    const httpParams: HttpParamsOptions = {
+      fromObject: credenciales
+    } as HttpParamsOptions;
+    headers = headers.append("Content-Type", "application/json");
+    const params = { params: new HttpParams(httpParams), headers: headers };
+    //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
+    
+    return this.httpClient.put(`${this.endpointFormUpdateSection}`,form, params);
+  }
+
 }
