@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { HttpParamsOptions } from "@angular/common/http/src/params";
 import { CookieService } from "angular2-cookie/core";
 
+
 @Injectable({
   providedIn: "root"
 })
@@ -32,19 +33,18 @@ export class FormService {
   }
 
   public pedir_cedulas(credenciales: Object) {
-    console.log("Consiguiendo...");
+    console.log("Consiguiendo cedulas...");
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
       fromObject: credenciales
     } as HttpParamsOptions;
     headers = headers.append("Content-Type", "application/json");
-    const params = { params: new HttpParams(httpParams), headers: headers };
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
-    return this.httpClient.get(`${this.endpointFamliyIdentifiers}`, params);
+    return this.httpClient.post(`${this.endpointFamliyIdentifiers}`,credenciales, {headers});
   }
 
   public conseguir_seccion(credenciales: Object) {
-    console.log("Consiguiendo...");
+    console.log("Consiguiendo seccion...");
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
       fromObject: credenciales

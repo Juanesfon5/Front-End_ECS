@@ -28,9 +28,9 @@ export const environment = {
   endpointFormConfirm:
     "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/confirm",
   endpointFamliyIdentifiers:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/family_identifiers",
+    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/family_identifiers/",
   endpointFormFindSection:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/findSection",
+    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/findSection/",
   endpointGetFormMember:
     "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/user/get_form/member",
   endpointInsertUpdateAnswersMember:
