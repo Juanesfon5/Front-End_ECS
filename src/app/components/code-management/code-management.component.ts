@@ -10,9 +10,9 @@ export class CodeManagementComponent implements OnInit {
 
   ngOnInit() {
     let kappa = {};
-    this.getCodesCollector("0527903051");
-    this.asignar_entregados(kappa);
-    this.getCodesCollector("0527903051");
+    //this.getCodesCollector("0527903051");
+    //this.asignar_entregados(kappa);
+    //this.getCodesCollector("0527903051");
   }
 
   getCodesCollector(id) {

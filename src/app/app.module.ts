@@ -25,14 +25,16 @@ import { CollectorService } from "./services/collector.service";
 import { FormService } from "./services/form.service";
 import { GeneralService } from "./services/general.service";
 
-
 //Manejo de cookies
 import { CookieService } from "angular2-cookie/services/cookies.service";
-import { LoginAnalistComponent } from './components/login-analist/login-analist.component';
-import { LoginCollectorComponent } from './components/login-collector/login-collector.component';
-import { FormSection2Component } from './components/form-section2/form-section2.component';
-import { FormSection3Component } from './components/form-section3/form-section3.component';
-import { FormSection4Component } from './components/form-section4/form-section4.component';
+import { LoginAnalistComponent } from "./components/login-analist/login-analist.component";
+import { LoginCollectorComponent } from "./components/login-collector/login-collector.component";
+import { FormSection2Component } from "./components/form-section2/form-section2.component";
+import { FormSection3Component } from "./components/form-section3/form-section3.component";
+import { FormSection4Component } from "./components/form-section4/form-section4.component";
+
+//Animacion
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -77,6 +79,7 @@ export function maxValidationMessage(err, field) {
     ReactiveFormsModule,
     FormsModule,
     FormlyBootstrapModule,
+    NgxSpinnerModule,
     FormlyModule.forRoot({
       validationMessages: [
         { name: "required", message: "This field is required" },
