@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { Router } from "@angular/router";
 import { CookieService } from "angular2-cookie/core";
 
 @Injectable({
@@ -17,7 +16,6 @@ export class UserService {
   readonly endpointUserTokenRefresh = environment.endpointUserTokenRefresh;
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
     private cookieService: CookieService
   ) {}
 

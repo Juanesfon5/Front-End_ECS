@@ -14,12 +14,27 @@
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
+      <script type="text/typescript" src=""></script>
+      <script>
+          function decryptfun() {
+            var pass = "hjubjbjhdgyuwj";
+            var encrtoken = "abcdefghijklmn";
+        
+            //var p = lib.decrypt(encrtoken, atob(pass)); //USE THIS IN YOUR CASE
+            var p = "test"; //just for example
+            alert(p);
+          }
+        </script>
       <li class="nav-item"><a class="nav-link" routerLink="../home">Home</a></li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="../Form1">Formulario 1</a>
+        <a class="nav-link" (click)="form1Presionado()" routerLink="../Form1">Formulario 1</a> 
       </li>
-      <li class="nav-item"><a class="nav-link" href="#">Formulario 2</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Formulario 3</a></li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="form2Presionado()" routerLink="../Form1">Formulario 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="form3Presionado()" routerLink="../Form1">Formulario 3</a>
+      </li>
     </ul>
   </div>
 </nav>

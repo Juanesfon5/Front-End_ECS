@@ -4,6 +4,8 @@ import { FormlyFormOptions, FormlyFieldConfig } from "@ngx-formly/core";
 import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 import { FormService } from "../../services/form.service";
 import { GeneralService} from "../../services/general.service";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: "app-form-section",
@@ -11,18 +13,25 @@ import { GeneralService} from "../../services/general.service";
   styleUrls: ["./form-section.component.scss"]
 })
 export class FormSectionComponent implements OnInit {
-  messageForm: FormGroup;
+  seccion;
+  form = new FormGroup({});
+  model: any = {};
+  options: FormlyFormOptions = {};
   submitted = false;
   success = false;
   response_login = {};
+  fields: FormlyFieldConfig[] = [] 
 
-  constructor(private formServ: FormService, private generalService: GeneralService) {}
+  constructor(private formServ: FormService, private generalService: GeneralService, private formlyJsonschema: FormlyJsonschema, private router: Router) {}
 
   ngOnInit() {
+    this.conseguir_seccion();
     this.response_login = {
       "ECN": localStorage.getItem("ECN"),
       "CFN": localStorage.getItem("CFN")
     };
+
+    //this.fields = [this.seccion]
 
 //   this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
 //     let id = data["family_identifiers"][0];
@@ -225,15 +234,12 @@ export class FormSectionComponent implements OnInit {
       
     this.actualizar_respuestasS(4, aform);*/
 
-    this.conseguir_seccion(4);
+    //this.conseguir_seccion(4);
     //this.confirmar_envioFormulario();
   }
 
-  onSubmit() {
-    this.submitted = true;
-    if (this.messageForm.invalid) {
-      return;
-    }
+  submit(){
+    alert(JSON.stringify(this.model));
   }
 
   confirmar_envioFormulario() {
@@ -248,21 +254,43 @@ export class FormSectionComponent implements OnInit {
     });
   }
 
-  conseguir_seccion(numero: any) {
+  conseguir_seccion() {
+    let numero = localStorage.getItem("numero")
+    let numero1 = +numero
     let s_formulario = {
-      "number": numero,
+      "number": numero1,
       "ECN": localStorage.getItem("ECN"),
       "CFN": localStorage.getItem("CFN")
     };
-    const usr = this.formServ
+    console.log(numero);
+    this.formServ
       .conseguir_seccion(s_formulario)
       .subscribe(data => {
-        console.log(data);
+        let s = JSON.stringify(data["seccion"]);
+        s = s.substr(1,(s.length-2));
+        localStorage.setItem("form",s);
+        console.log(s);
+        this.pintar_formulario();
+        //localStorage.setItem("form1",test);
       });
   }
 
+  pintar_formulario(){
+    //window.location.reload();
+    let form1 = localStorage.getItem("form");
+    let obj = JSON.parse(form1);
+    console.log(obj);
+    //et ase = localStorage.getItem("form1")
+    //console.log(ase);
+    //let obj2 = JSON.parse(ase);
+    //console.log(obj2);
+    this.fields = [this.formlyJsonschema.toFieldConfig(obj)];
+    localStorage.removeItem("form");
+    localStorage.removeItem("numero");
+  }
+
   conseguir_respuestaP(number: any){
-    const usr = this.formServ
+  this.formServ
     .pedir_respuestaPersona(this.response_login, number)
     .subscribe(data => {
       console.log(data);
@@ -270,7 +298,7 @@ export class FormSectionComponent implements OnInit {
   }
 
   actualizar_respuestasF(number: any, form: any){
-    const usr = this.formServ
+    this.formServ
     .actualizar_respuestaFormulario(this.response_login, number, form)
     .subscribe(data => {
       console.log(data);
@@ -278,7 +306,7 @@ export class FormSectionComponent implements OnInit {
   }
 
   actualizar_respuestasS(number: any, form: any){
-    const usr = this.formServ
+    this.formServ
     .actualizar_seccionEspecifica(this.response_login, number, form)
     .subscribe(data => {
       console.log(data);

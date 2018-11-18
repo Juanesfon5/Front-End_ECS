@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { CookieService } from "angular2-cookie/core";
+import { Router } from "@angular/router";
+
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -15,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userServices: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -40,10 +44,17 @@ export class LoginComponent implements OnInit {
       }
     }
     this.userServices.authenticate(user).subscribe(data => {
-      this.setCookies("access_token", data["access_token"]);
-      this.setCookies("refresh_token", data["refresh_token"]);
-      localStorage.setItem("ECN", user["ECN"]);
-      localStorage.setItem("CFN", user["CFN"]);
+      console.log(data["access_token"])
+      if (data["access_token"] == "null"){
+        this.success = false;
+        return;
+      } else{
+        this.setCookies("access_token", data["access_token"]);
+        this.setCookies("refresh_token", data["refresh_token"]);
+        localStorage.setItem("ECN", user["ECN"]);
+        localStorage.setItem("CFN", user["CFN"]);
+        this.router.navigate(["../home"]);
+      }
     });
     this.success = true;
   }

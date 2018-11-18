@@ -10,6 +10,7 @@ import { CookieService } from "angular2-cookie/core";
   providedIn: "root"
 })
 export class FormService {
+  number;
   readonly endpointFormConfirm = environment.endpointFormConfirm;
   readonly endpointFamliyIdentifiers = environment.endpointFamliyIdentifiers;
   readonly endpointFormFindSection = environment.endpointFormFindSection;
@@ -24,6 +25,17 @@ export class FormService {
   ) {}
 
  
+  public setNumber(numero: number){
+
+    localStorage.setItem("numero",String(numero));
+    window.location.reload();
+    this.number = numero;
+
+  }
+
+  public getNumber(){
+    return this.number
+  }
 
   public confirmar_envio(credenciales: Object) {
     console.log("Consiguiendo...");
