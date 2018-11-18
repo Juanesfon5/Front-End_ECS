@@ -6,44 +6,41 @@ import { CollectorService } from "../../services/collector.service";
   styleUrls: ["./code-management.component.scss"]
 })
 export class CodeManagementComponent implements OnInit {
+  collector = { id: "", fullName: "", cellphone: "" };
+  codes = null;
+
   constructor(private collectorService: CollectorService) {}
 
   ngOnInit() {
     let kappa = {};
-    //this.getCodesCollector("0527903051");
+    this.getInfoCollector(localStorage.getItem("idCollector"));
     //this.asignar_entregados(kappa);
-    //this.getCodesCollector("0527903051");
+    this.getCodesCollector("0527903051");
+  }
+
+  getInfoCollector(id) {
+    this.collectorService.getInfoCollector(id).subscribe(data => {
+      this.collector.id = data["id"];
+      this.collector.fullName = data["fullName"];
+      this.collector.cellphone = data["cellphone"];
+    });
   }
 
   getCodesCollector(id) {
     this.collectorService.getCodesCollector(id).subscribe(data => {
-      console.log(data);
+      this.codes = data;
     });
   }
 
-  asignar_entregados(credenciales: Object) {
-    /*    //FINES DE PRUEBA
-    credenciales = {
-      "ECN": "1333606745",
-      "CFN": "6594753290",
-    }*/
-
-    //REAL
-    credenciales = {
-      credenciales,
-      colectorId: localStorage.getItem("colectorId")
+  asignar_entregados(ecn, cfn) {
+    let credenciales = {
+      ECN: ecn,
+      CFN: cfn,
+      collectorId: localStorage.getItem("idCollector")
     };
-
     /// Indicar que los CODIGOS ENTREGADOS
     this.collectorService.asignarCodigos(credenciales).subscribe(data => {
-      console.log(data);
-      /**
-       * Data
-          * {
-    message:"the code was delivered successfully",
-    success:true
-    }
-       */
+      alert(data["message"]);
     });
   }
 }

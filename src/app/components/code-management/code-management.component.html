@@ -1,3 +1,83 @@
-<p>
-  code-management works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="card border-primary mb-3" style="width: 100%">
+        <div class="card-header">
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;"> Información del recolector </font>
+          </font>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <font style="vertical-align: inherit;">
+              <font style="vertical-align: inherit;">id: {{collector.id}}</font>
+            </font>
+          </p>
+          <p class="card-text">
+            <font style="vertical-align: inherit;">
+              <font style="vertical-align: inherit;">Nombre: {{collector.fullName}}</font>
+            </font>
+          </p>
+          <p class="card-text">
+            <font style="vertical-align: inherit;">
+              <font style="vertical-align: inherit;">Telefono: {{collector.cellphone}}</font>
+            </font>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <h6>Códigos</h6>
+        <table class="table">
+          <thead>
+            <tr class="table-info">
+              <th scope="col">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> ECN </font>
+                </font>
+              </th>
+              <th scope="col">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> CFN </font>
+                </font>
+              </th>
+              <th scope="col">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> Address </font>
+                </font>
+              </th>
+              <th scope="col">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> Entregado </font>
+                </font>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of codes" class="table-light">
+              <th *ngIf="item['entregado'] == false" scope="row">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> {{item["ECN"]}} </font>
+                </font>
+              </th>
+              <td *ngIf="item['entregado'] == false">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> {{item["CFN"]}} </font>
+                </font>
+              </td>
+              <td *ngIf="item['entregado'] == false">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"> {{item["address"]}} </font>
+                </font>
+              </td>
+              <td *ngIf="item['entregado'] == false"><button class="btn btn-success" (click)="asignar_entregados(item['ECN'], item['CFN'])">Entregado</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
