@@ -3,9 +3,8 @@ import { FormGroup } from "@angular/forms";
 import { FormlyFormOptions, FormlyFieldConfig } from "@ngx-formly/core";
 import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 import { FormService } from "../../services/form.service";
-import { GeneralService} from "../../services/general.service";
+import { GeneralService } from "../../services/general.service";
 import { Router } from "@angular/router";
-
 
 @Component({
   selector: "app-form-section3",
@@ -20,27 +19,31 @@ export class FormSection3Component implements OnInit {
   submitted = false;
   success = false;
   response_login = {};
-  fields: FormlyFieldConfig[] = [] 
+  fields: FormlyFieldConfig[] = [];
 
-  constructor(private formServ: FormService, private generalService: GeneralService, private formlyJsonschema: FormlyJsonschema, private router: Router) {}
+  constructor(
+    private formServ: FormService,
+    private generalService: GeneralService,
+    private formlyJsonschema: FormlyJsonschema,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.conseguir_seccion();
     this.response_login = {
-      "ECN": localStorage.getItem("ECN"),
-      "CFN": localStorage.getItem("CFN")
+      ECN: localStorage.getItem("ECN"),
+      CFN: localStorage.getItem("CFN")
     };
   }
 
-  submit(){
+  submit() {
     alert(JSON.stringify(this.model));
   }
 
   // Validar que todos los campos campos de los formularios
   confirmar_envioFormulario() {
     this.formServ.confirmar_envio(this.response_login).subscribe(data => {
-      console.log(data);     
-
+      console.log(data);
     });
   }
 
@@ -52,15 +55,13 @@ export class FormSection3Component implements OnInit {
 
   conseguir_seccion() {
     let s_formulario = {
-      "number": 3,
-      "ECN": localStorage.getItem("ECN"),
-      "CFN": localStorage.getItem("CFN")
+      number: 3,
+      ECN: localStorage.getItem("ECN"),
+      CFN: localStorage.getItem("CFN")
     };
     //console.log(numero);
-    this.formServ
-      .conseguir_seccion(s_formulario)
-      .subscribe(data => {
-        let s = data["seccion"."value"];
+    this.formServ.conseguir_seccion(s_formulario).subscribe(data => {
+      /*let s = data["seccion"."value"];
         console.log(s);
         console.log(s.value);
         console.log(JSON.stringify(s.value));
@@ -69,11 +70,12 @@ export class FormSection3Component implements OnInit {
         localStorage.setItem("form",s);
         //console.log(s);
         this.pintar_formulario();
-        //localStorage.setItem("form1",test);
-      });
+        //localStorage.setItem("form1",test);*/
+      console.log(data["seccion"][0]["value"][0]);
+    });
   }
 
-  pintar_formulario(){
+  pintar_formulario() {
     //window.location.reload();
     let form1 = localStorage.getItem("form");
     let obj = JSON.parse(form1);
@@ -86,27 +88,27 @@ export class FormSection3Component implements OnInit {
     localStorage.removeItem("form");
   }
 
-  conseguir_respuestaP(number: any){
-  this.formServ
-    .pedir_respuestaPersona(this.response_login, number)
-    .subscribe(data => {
-      console.log(data);
-    });
+  conseguir_respuestaP(number: any) {
+    this.formServ
+      .pedir_respuestaPersona(this.response_login, number)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
-  actualizar_respuestasF(number: any, form: any){
+  actualizar_respuestasF(number: any, form: any) {
     this.formServ
-    .actualizar_respuestaFormulario(this.response_login, number, form)
-    .subscribe(data => {
-      console.log(data);
-    });
+      .actualizar_respuestaFormulario(this.response_login, number, form)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
-  actualizar_respuestasS(number: any, form: any){
+  actualizar_respuestasS(number: any, form: any) {
     this.formServ
-    .actualizar_seccionEspecifica(this.response_login, number, form)
-    .subscribe(data => {
-      console.log(data);
-    });
+      .actualizar_seccionEspecifica(this.response_login, number, form)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }
