@@ -1,3 +1,77 @@
-<p>
-  census-metrics works!
-</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/CensusMetrics">Analista</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarColor01"
+    aria-controls="navbarColor01"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/CensusMetrics"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/CensusMetrics">Estadísticas </a>
+      </li>
+    </ul>
+    <div class="form-inline  my-2 my-lg-0">
+      <a class="nav-link text-white" routerLink="/loginAnalist"
+        >Cerrar Sesión</a
+      >
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <h1 class="display-3">Metricas del Censo, Bolumbia 2019</h1>
+  <h2 class="display-3">Bolumbia 2019</h2>
+  <p class="lead">
+    Aquí podrás encontrar todo referente al avance del censo, datos como cuantos
+    formularios han sido confirmados, cuantos entregados y muchos datos más.
+  </p>
+  <hr class="my-4" />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div style="display: block">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+        ></canvas>
+      </div>
+      <
+    </div>
+    <div class="col">
+      <div>
+        <div style="display: block">
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered2($event)"
+            (chartClick)="chartClicked2($event)"
+          ></canvas>
+        </div>
+        <button (click)="randomize()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

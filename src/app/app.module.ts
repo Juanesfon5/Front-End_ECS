@@ -36,6 +36,9 @@ import { FormSection4Component } from "./components/form-section4/form-section4.
 //Animacion
 import { NgxSpinnerModule } from "ngx-spinner";
 
+//Graficador
+import { ChartsModule } from "ng2-charts";
+
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
 }
@@ -74,6 +77,7 @@ export function maxValidationMessage(err, field) {
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
