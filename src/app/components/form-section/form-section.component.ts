@@ -242,9 +242,11 @@ export class FormSectionComponent implements OnInit {
     alert(JSON.stringify(this.model));
   }
 
+  // Validar que todos los campos campos de los formularios
   confirmar_envioFormulario() {
     this.formServ.confirmar_envio(this.response_login).subscribe(data => {
-      console.log(data);
+      console.log(data);     
+
     });
   }
 

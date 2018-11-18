@@ -8,9 +8,8 @@ import { CollectorService } from "../../services/collector.service";
 export class CodeManagementComponent implements OnInit {
   constructor(private collectorService: CollectorService) {}
 
-
   ngOnInit() {
-    let kappa = { };
+    let kappa = {};
     this.getCodesCollector("0527903051");
     this.asignar_entregados(kappa);
     this.getCodesCollector("0527903051");
@@ -22,22 +21,29 @@ export class CodeManagementComponent implements OnInit {
     });
   }
 
-  asignar_entregados(credenciales: Object){
-/*    //FINES DE PRUEBA
+  asignar_entregados(credenciales: Object) {
+    /*    //FINES DE PRUEBA
     credenciales = {
       "ECN": "1333606745",
       "CFN": "6594753290",
     }*/
-    
+
     //REAL
-  credenciales = {
+    credenciales = {
       credenciales,
-      "colectorId": localStorage.getItem("colectorId")
-    }
+      colectorId: localStorage.getItem("colectorId")
+    };
 
+    /// Indicar que los CODIGOS ENTREGADOS
     this.collectorService.asignarCodigos(credenciales).subscribe(data => {
+      console.log(data);
+      /**
+       * Data
+          * {
+    message:"the code was delivered successfully",
+    success:true
+    }
+       */
     });
-
-
   }
 }

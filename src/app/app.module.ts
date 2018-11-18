@@ -30,6 +30,9 @@ import { GeneralService } from "./services/general.service";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import { LoginAnalistComponent } from './components/login-analist/login-analist.component';
 import { LoginCollectorComponent } from './components/login-collector/login-collector.component';
+import { FormSection2Component } from './components/form-section2/form-section2.component';
+import { FormSection3Component } from './components/form-section3/form-section3.component';
+import { FormSection4Component } from './components/form-section4/form-section4.component';
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -62,7 +65,10 @@ export function maxValidationMessage(err, field) {
     HomePageComponent,
     ArrayTypeComponent,
     LoginAnalistComponent,
-    LoginCollectorComponent
+    LoginCollectorComponent,
+    FormSection2Component,
+    FormSection3Component,
+    FormSection4Component
   ],
   imports: [
     BrowserModule,

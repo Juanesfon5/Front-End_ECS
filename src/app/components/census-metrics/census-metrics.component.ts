@@ -14,6 +14,15 @@ export class CensusMetricsComponent implements OnInit {
   getStatistics() {
     this.analistService.getStatistics().subscribe(data => {
       console.log(data);
+      /**
+        * "confirmed_forms": 4,
+        "no_confirmed_forms": 0,
+        "delivered_forms": 2,
+        "no_delivered_forms": 0
+       * 
+       * 
+       * 
+       */
     });
   }
 }

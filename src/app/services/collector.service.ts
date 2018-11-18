@@ -79,7 +79,7 @@ export class CollectorService {
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     
-    return this.httpClient.put(`${this.endpointDeliverCode}`,credenciales, headers);
+    return this.httpClient.put(`${this.endpointDeliverCode}`,credenciales, {headers});
   }
 
 }

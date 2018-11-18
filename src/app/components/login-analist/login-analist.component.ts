@@ -30,6 +30,7 @@ export class LoginAnalistComponent implements OnInit {
   tokenRefreshAnalist() {
     this.analistService.tokenRefreshAnalist().subscribe(data => {
       console.log(data);
+      
     });
   }
 
