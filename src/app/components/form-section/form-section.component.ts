@@ -51,14 +51,12 @@ export class FormSectionComponent implements OnInit {
   }
 
   conseguir_seccion() {
-    let numero = localStorage.getItem("numero")
-    let numero1 = +numero
     let s_formulario = {
-      "number": numero1,
+      "number":1,
       "ECN": localStorage.getItem("ECN"),
       "CFN": localStorage.getItem("CFN")
     };
-    //console.log(numero);
+    //console.log(s_formulario);
     this.formServ
       .conseguir_seccion(s_formulario)
       .subscribe(data => {
@@ -82,7 +80,6 @@ export class FormSectionComponent implements OnInit {
     //console.log(obj2);
     this.fields = [this.formlyJsonschema.toFieldConfig(obj)];
     localStorage.removeItem("form");
-    localStorage.removeItem("numero");
   }
 
   conseguir_respuestaP(number: any){

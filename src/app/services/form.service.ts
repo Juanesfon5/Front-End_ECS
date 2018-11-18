@@ -24,19 +24,6 @@ export class FormService {
     private cookieService: CookieService
   ) {}
 
- 
-  public setNumber(numero: number){
-
-    localStorage.setItem("numero",String(numero));
-    window.location.reload();
-    this.number = numero;
-
-  }
-
-  public getNumber(){
-    return this.number
-  }
-
   public confirmar_envio(credenciales: Object) {
     console.log("Consiguiendo...");
     let headers = new HttpHeaders();

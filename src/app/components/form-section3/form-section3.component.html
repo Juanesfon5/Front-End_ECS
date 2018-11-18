@@ -1,3 +1,11 @@
-<p>
-  form-section3 works!
-</p>
+<div><h1 style="text-align: center">ECS Bolumbia</h1></div>
+<app-header></app-header>
+
+
+  <form [formGroup]="form" class="form-signin" (ngSubmit)="submit()">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+      <button type="submit" class="btn btn-primary submit-button" [disabled]="!form.valid">
+        Submit
+      </button>
+    </formly-form>
+  </form>
