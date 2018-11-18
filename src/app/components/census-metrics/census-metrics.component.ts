@@ -8,7 +8,7 @@ import { AnalistService } from "../../services/analist.service";
 export class CensusMetricsComponent implements OnInit {
   constructor(private analistService: AnalistService) {}
   ngOnInit() {
-    this.getStatistics();
+    //this.getStatistics();
   }
 
   getStatistics() {
