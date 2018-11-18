@@ -11,10 +11,8 @@ export class HeaderComponent implements OnInit {
 
   form1Presionado(){
     this.formServ.setNumber(1);
-    console.log("Funciona. se puso el número " + this.formServ.getNumber());
-    alert("1 pressed");
-    
-    
+    //console.log("Funciona. se puso el número " + this.formServ.getNumber());    
+  
   }
 
 
@@ -25,17 +23,14 @@ export class HeaderComponent implements OnInit {
   
   form2Presionado(){
     this.formServ.setNumber(2);
-    console.log("Funciona. se puso el número " + this.formServ.getNumber());
-    alert("2 pressed"); 
-    this.router.navigate(["Form1"]);
-    //window.location.reload();  
+    //console.log("Funciona. se puso el número " + this.formServ.getNumber());
+    //this.router.navigate(["Form1"]);
   }
 
   form3Presionado(){
     
-    console.log("Funciona. se puso el número " + this.formServ.getNumber());
+    //console.log("Funciona. se puso el número " + this.formServ.getNumber());
     //window.location.reload();
     this.formServ.setNumber(3);
-    alert("3 pressed");
   }
 }

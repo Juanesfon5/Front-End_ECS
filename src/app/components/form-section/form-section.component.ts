@@ -262,14 +262,14 @@ export class FormSectionComponent implements OnInit {
       "ECN": localStorage.getItem("ECN"),
       "CFN": localStorage.getItem("CFN")
     };
-    console.log(numero);
+    //console.log(numero);
     this.formServ
       .conseguir_seccion(s_formulario)
       .subscribe(data => {
         let s = JSON.stringify(data["seccion"]);
         s = s.substr(1,(s.length-2));
         localStorage.setItem("form",s);
-        console.log(s);
+        //console.log(s);
         this.pintar_formulario();
         //localStorage.setItem("form1",test);
       });
@@ -279,7 +279,7 @@ export class FormSectionComponent implements OnInit {
     //window.location.reload();
     let form1 = localStorage.getItem("form");
     let obj = JSON.parse(form1);
-    console.log(obj);
+    //console.log(obj);
     //et ase = localStorage.getItem("form1")
     //console.log(ase);
     //let obj2 = JSON.parse(ase);
