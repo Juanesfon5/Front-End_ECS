@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CollectorService } from "../../services/collector.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router/";
 
 @Component({
   selector: "app-login-collector",
@@ -7,22 +9,48 @@ import { CollectorService } from "../../services/collector.service";
   styleUrls: ["./login-collector.component.scss"]
 })
 export class LoginCollectorComponent implements OnInit {
-  constructor(private collectorService: CollectorService) {}
-  CollectorCredential = {
-    id: "1925650324",
-    password: "Bade0u11vg"
-  };
-  ngOnInit() {
-    this.authenticateCollector();
-    this.tokenRefreshCollector();
-    this.getInfoCollector();
+  constructor(
+    private collectorService: CollectorService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.construirFormulario();
   }
 
-  authenticateCollector() {
+  loginForm: FormGroup;
+  correctoLogin: boolean;
+
+  construirFormulario() {
+    this.correctoLogin = true;
+    this.loginForm = this.fb.group({
+      id: [
+        "",
+        Validators.compose([Validators.required, Validators.minLength(3)])
+      ],
+      clave: ["", Validators.compose([Validators.required])]
+    });
+  }
+
+  submit() {
+    let id = this.loginForm.get("id").value;
+    let clave = this.loginForm.get("clave").value;
+    let CollectorCredential = { id: id, password: clave };
+    console.log(CollectorCredential);
+    this.authenticateCollector(CollectorCredential);
+  }
+
+  ngOnInit() {}
+
+  authenticateCollector(CollectorCredential) {
     this.collectorService
-      .authenticateCollector(this.CollectorCredential)
+      .authenticateCollector(CollectorCredential)
       .subscribe(data => {
         console.log(data);
+
+            
+
+
+        this.correctoLogin = true;
       });
   }
 
