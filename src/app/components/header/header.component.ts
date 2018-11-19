@@ -46,7 +46,14 @@ export class HeaderComponent implements OnInit {
       alert("Aun faltan campos por completar");
     } else {
       console.log("Enviando formulario...");
-      this.formServ.confirmar_envio(this.response_login);
+      this.formServ.confirmar_envio(this.response_login).subscribe(data => {
+        console.log(data);
+        if(data["success"] == true){
+          alert(data["message"]);
+        } else {
+          alert("Hubo un problema con el envío del formulario");
+        }
+      });
     }
 
     //valir 1 por 1 si tiene todos los campos, en caso contrario alerta diciendo la seccion que hace falta por llenar
