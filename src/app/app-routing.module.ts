@@ -10,6 +10,8 @@ import { LoginAnalistComponent } from "./components/login-analist/login-analist.
 import { CensusMetricsComponent } from "./components/census-metrics/census-metrics.component";
 import { LoginCollectorComponent } from "./components/login-collector/login-collector.component";
 import { CodeManagementComponent } from "./components/code-management/code-management.component";
+import { AuthGuard } from "./auth.guard";
+
 const routes: Routes = [
   {
     path: "",
@@ -21,19 +23,23 @@ const routes: Routes = [
   },
   {
     path: "Form1",
-    component: FormSectionComponent
+    component: FormSectionComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "Form2",
-    component: FormSection2Component
+    component: FormSection2Component,
+    canActivate: [AuthGuard]
   },
   {
     path: "Form3",
-    component: FormSection3Component
+    component: FormSection3Component,
+    canActivate: [AuthGuard]
   },
   {
     path: "Form4",
-    component: FormSection4Component
+    component: FormSection4Component,
+    canActivate: [AuthGuard]
   },
   {
     path: "loginAnalist",

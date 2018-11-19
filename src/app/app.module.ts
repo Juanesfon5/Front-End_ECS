@@ -61,6 +61,8 @@ export function maxValidationMessage(err, field) {
   return `This value should be less than ${field.templateOptions.max}`;
 }
 
+//Guardian de rutas
+import { AuthGuard } from "./auth.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +135,7 @@ export function maxValidationMessage(err, field) {
     AnalistService,
     CollectorService,
     FormService,
+    AuthGuard,
     GeneralService
   ],
   bootstrap: [AppComponent]

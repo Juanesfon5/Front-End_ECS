@@ -61,7 +61,7 @@ export class FormSection3Component implements OnInit {
     let respuestas = this.model;
     console.log(respuestas);
     this.actualizar_respuestasPersona(respuestas);
-
+    localStorage.setItem("Respuesta3", JSON.stringify(this.model));
     //Recorer el array e insertar en la db de cada persona
 
     //this.router.navigate(["../Form4"]);

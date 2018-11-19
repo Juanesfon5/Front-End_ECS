@@ -24,6 +24,15 @@ export class UserService {
     https://github.com/josearangos/ECS-Backend/issues/10
   
   */
+
+  loggedIn() {
+    if (this.cookieService.get("access_token")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public authenticate(user: Object) {
     console.log("Autenticando...");
     let headers = new HttpHeaders();
@@ -33,7 +42,7 @@ export class UserService {
     });
   }
 
-  public  tokenRefresh() {
+  public tokenRefresh() {
     console.log("tokenRefresh...");
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
