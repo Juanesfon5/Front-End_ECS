@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { HttpParamsOptions } from "@angular/common/http/src/params";
 import { CookieService } from "angular2-cookie/core";
 
-
 @Injectable({
   providedIn: "root"
 })
@@ -15,8 +14,9 @@ export class FormService {
   readonly endpointFamliyIdentifiers = environment.endpointFamliyIdentifiers;
   readonly endpointFormFindSection = environment.endpointFormFindSection;
   readonly endpointGetFormMember = environment.endpointGetFormMember;
-  readonly endpointInsertUpdateAnswersMember = environment.endpointInsertUpdateAnswersMember;
-  readonly endpointFormUpdateSection =environment.endpointFormUpdateSection;
+  readonly endpointInsertUpdateAnswersMember =
+    environment.endpointInsertUpdateAnswersMember;
+  readonly endpointFormUpdateSection = environment.endpointFormUpdateSection;
 
   constructor(
     private httpClient: HttpClient,
@@ -42,7 +42,11 @@ export class FormService {
     } as HttpParamsOptions;
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
-    return this.httpClient.post(`${this.endpointFamliyIdentifiers}`,credenciales, {headers});
+    return this.httpClient.post(
+      `${this.endpointFamliyIdentifiers}`,
+      credenciales,
+      { headers }
+    );
   }
 
   public conseguir_seccion(credenciales: Object) {
@@ -60,27 +64,33 @@ export class FormService {
   public pedir_respuestaPersona(credenciales: Object, number: String) {
     console.log("Consiguiendo respuestas de una persona...");
     credenciales = {
-      "CFN": credenciales["CFN"],
-      "ECN": credenciales["ECN"],
-      "idNumber": number
-    }
+      CFN: credenciales["CFN"],
+      ECN: credenciales["ECN"],
+      idNumber: number
+    };
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
       fromObject: credenciales
     } as HttpParamsOptions;
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
-    return this.httpClient.post(`${this.endpointGetFormMember}`,credenciales, {headers});
+    return this.httpClient.post(`${this.endpointGetFormMember}`, credenciales, {
+      headers
+    });
   }
 
-  public actualizar_respuestaFormulario(credenciales: Object, number: String, form: any) {
+  public actualizar_respuestaFormularioPersona(
+    credenciales: Object,
+    idNumber: String,
+    form: any
+  ) {
     console.log("Actualizando respuestas del formulario...");
     credenciales = {
-      "CFN": credenciales["CFN"],
-      "ECN": credenciales["ECN"],
-      "idNumber": number,
-      "questions":  form
-    }
+      CFN: credenciales["CFN"],
+      ECN: credenciales["ECN"],
+      idNumber: idNumber,
+      questions: form
+    };
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
       fromObject: credenciales
@@ -88,16 +98,24 @@ export class FormService {
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
 
-    return this.httpClient.post(`${this.endpointInsertUpdateAnswersMember}`,credenciales, {headers});
+    return this.httpClient.post(
+      `${this.endpointInsertUpdateAnswersMember}`,
+      credenciales,
+      { headers }
+    );
   }
 
-  public actualizar_seccionEspecifica(credenciales: Object, number: any, form: any) {
+  public actualizar_seccionEspecifica(
+    credenciales: Object,
+    number: any,
+    form: any
+  ) {
     console.log("Actualizando respuestas de una seccion...");
     credenciales = {
-      "CFN": credenciales["CFN"],
-      "ECN": credenciales["ECN"],
-      "number": number,
-    }
+      CFN: credenciales["CFN"],
+      ECN: credenciales["ECN"],
+      number: number
+    };
 
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
@@ -106,8 +124,11 @@ export class FormService {
     headers = headers.append("Content-Type", "application/json");
     const params = { params: new HttpParams(httpParams), headers: headers };
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
-    
-    return this.httpClient.put(`${this.endpointFormUpdateSection}`,form, params);
-  }
 
+    return this.httpClient.put(
+      `${this.endpointFormUpdateSection}`,
+      form,
+      params
+    );
+  }
 }

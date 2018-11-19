@@ -17,17 +17,17 @@ export class FormSection3Component implements OnInit {
   model = {
     questions: [
       {
-        "nombrePersona": "",
-        "identificación": "",
-        "numero_identificación": "",
-        "relacion": "",
-        "genero": "",
-        "edad": "",
-        "fecha_nacimiento": "",
-        "educacion": "",
-        "año_alto": "",
-        "tipo_educacion": "",
-        "indigena": ""
+        nombrePersona: "",
+        identificación: "",
+        numero_identificación: "",
+        relacion: "",
+        genero: "",
+        edad: "",
+        fecha_nacimiento: "",
+        educacion: "",
+        año_alto: "",
+        tipo_educacion: "",
+        indigena: ""
       }
     ]
   };
@@ -64,14 +64,20 @@ export class FormSection3Component implements OnInit {
   }
 
   submit() {
-    let respuestas = JSON.stringify(this.model);
-<<<<<<< HEAD
-    alert(JSON.stringify(this.model));
-    console.log(respuestas);
-=======
-    console.log(respuestas)
-    this.router.navigate(["../Form4"]);
->>>>>>> e7f8f2e0c2a26328b204cc7718dc889421e4d7b1
+
+    let respuestas =this.model["questions"]);
+
+    respuestas.forEach(element => {
+      let cedula = element["numero_identificación"];
+      this.actualizar_respuestasPersona(cedula, respuestas);      
+
+
+    });
+    
+
+    //Recorer el array e insertar en la db de cada persona
+
+    //this.router.navigate(["../Form4"]);
   }
 
   // Validar que todos los campos campos de los formularios
@@ -83,7 +89,7 @@ export class FormSection3Component implements OnInit {
 
   conseguir_cedulas() {
     this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
   }
 
@@ -134,7 +140,6 @@ export class FormSection3Component implements OnInit {
       this.formServ
         .pedir_respuestaPersona(this.response_login, number)
         .subscribe(data => {
-          console.log(data["form"]["respuestas"]);
           questionsR.push(data["form"]["respuestas"]);
         });
     });
@@ -143,11 +148,14 @@ export class FormSection3Component implements OnInit {
     };
   }
 
-  actualizar_respuestasF(number: any, form: any) {
+  actualizar_respuestasPersona(idNumber: any, form: any) {
     this.formServ
-      .actualizar_respuestaFormulario(this.response_login, number, form)
+      .actualizar_respuestaFormularioPersona(this.response_login, idNumber, form)
       .subscribe(data => {
         //console.log(data);
+
+
+        
       });
   }
 
