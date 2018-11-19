@@ -71,13 +71,19 @@ export class FormSection3Component implements OnInit {
         //console.log(s);
         this.pintar_formulario();
         //localStorage.setItem("form1",test);*/
-      console.log(data["seccion"][0]["value"][0]);
+      let s = data["seccion"][0]["value"][0];
+      let sa = JSON.stringify(s)
+      console.log(s);
+      console.log(sa);
+      localStorage.setItem("form",sa);
+      this.pintar_formulario();
     });
   }
 
   pintar_formulario() {
     //window.location.reload();
     let form1 = localStorage.getItem("form");
+    console.log(form1);
     let obj = JSON.parse(form1);
     //console.log(obj);
     //et ase = localStorage.getItem("form1")

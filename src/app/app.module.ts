@@ -38,6 +38,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 //Graficador
 import { ChartsModule } from "ng2-charts";
+import { RepeatTypeComponent } from './components/form-section3/repeat-section.type';
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -73,7 +74,8 @@ export function maxValidationMessage(err, field) {
     LoginCollectorComponent,
     FormSection2Component,
     FormSection3Component,
-    FormSection4Component
+    FormSection4Component,
+    RepeatTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,7 @@ export function maxValidationMessage(err, field) {
       ],
       types: [
         { name: "string", extends: "input" },
+        { name: 'repeat', component: RepeatTypeComponent },
         {
           name: "number",
           extends: "input",
