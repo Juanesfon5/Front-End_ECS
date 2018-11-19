@@ -53,27 +53,14 @@ export class FormSection3Component implements OnInit {
   }
 
   decisionDeCarga() {
-    this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
-      let cedulasFamiliares = data["family_identifiers"];
-      //if (cedulasFamiliares.length == 0) {
-      this.conseguir_seccion();
-      //} else {
-      this.conseguir_respuestaP(cedulasFamiliares);
-      //  }
-    });
+    this.conseguir_seccion();
+    this.conseguir_respuestaP();
   }
 
   submit() {
-
-    let respuestas =this.model["questions"]);
-
-    respuestas.forEach(element => {
-      let cedula = element["numero_identificación"];
-      this.actualizar_respuestasPersona(cedula, respuestas);      
-
-
-    });
-    
+    let respuestas = this.model;
+    console.log(respuestas);
+    this.actualizar_respuestasPersona(respuestas);
 
     //Recorer el array e insertar en la db de cada persona
 
@@ -83,12 +70,6 @@ export class FormSection3Component implements OnInit {
   // Validar que todos los campos campos de los formularios
   confirmar_envioFormulario() {
     this.formServ.confirmar_envio(this.response_login).subscribe(data => {
-      //console.log(data);
-    });
-  }
-
-  conseguir_cedulas() {
-    this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
       //console.log(data);
     });
   }
@@ -134,28 +115,22 @@ export class FormSection3Component implements OnInit {
     localStorage.removeItem("form");
   }
 
-  conseguir_respuestaP(cedulasFamiliares: any) {
-    let questionsR = new Array();
-    cedulasFamiliares.forEach(number => {
-      this.formServ
-        .pedir_respuestaPersona(this.response_login, number)
-        .subscribe(data => {
-          questionsR.push(data["form"]["respuestas"]);
-        });
-    });
-    this.model = {
-      questions: questionsR
-    };
+  conseguir_respuestaP() {
+    this.formServ
+      .pedir_respuestaPersona(this.response_login)
+      .subscribe(data => {
+        console.log(data["form"]);
+        if (data["form"] != null) {
+          this.model = data["form"];
+        }
+      });
   }
 
-  actualizar_respuestasPersona(idNumber: any, form: any) {
+  actualizar_respuestasPersona(form: any) {
     this.formServ
-      .actualizar_respuestaFormularioPersona(this.response_login, idNumber, form)
+      .actualizar_respuestaFormularioPersona(this.response_login, form)
       .subscribe(data => {
-        //console.log(data);
-
-
-        
+        console.log(data);
       });
   }
 

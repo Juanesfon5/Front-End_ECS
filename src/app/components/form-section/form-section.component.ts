@@ -93,19 +93,13 @@ export class FormSectionComponent implements OnInit {
 
   conseguir_respuestaP(number: any) {
     this.formServ
-      .pedir_respuestaPersona(this.response_login, number)
+      .pedir_respuestaPersona(this.response_login)
       .subscribe(data => {
         //console.log(data);
       });
   }
 
-  actualizar_respuestasF(number: any, form: any) {
-    this.formServ
-      .actualizar_respuestaFormulario(this.response_login, number, form)
-      .subscribe(data => {
-        //console.log(data);
-      });
-  }
+  
 
   actualizar_respuestasS(number: any, form: any) {
     this.formServ

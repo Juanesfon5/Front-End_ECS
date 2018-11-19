@@ -61,12 +61,11 @@ export class FormService {
     return this.httpClient.get(`${this.endpointFormFindSection}`, params);
   }
 
-  public pedir_respuestaPersona(credenciales: Object, number: String) {
-    console.log("Consiguiendo respuestas de una persona...");
+  public pedir_respuestaPersona(credenciales: Object) {
+    console.log("Consiguiendo respuestas de la familia...");
     credenciales = {
       CFN: credenciales["CFN"],
-      ECN: credenciales["ECN"],
-      idNumber: number
+      ECN: credenciales["ECN"]
     };
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
@@ -81,16 +80,17 @@ export class FormService {
 
   public actualizar_respuestaFormularioPersona(
     credenciales: Object,
-    idNumber: String,
     form: any
   ) {
     console.log("Actualizando respuestas del formulario...");
     credenciales = {
       CFN: credenciales["CFN"],
       ECN: credenciales["ECN"],
-      idNumber: idNumber,
-      questions: form
+      questions: form["questions"]
     };
+
+    console.log("Credenciales");
+    console.log(credenciales);
     let headers = new HttpHeaders();
     const httpParams: HttpParamsOptions = {
       fromObject: credenciales
