@@ -37,9 +37,9 @@ export class FormSection3Component implements OnInit {
   }
 
   submit() {
-    let respuestas = JSON.stringify(this.model;
-    alert(JSON.stringify(this.model));
+    let respuestas = JSON.stringify(this.model);
     console.log(respuestas)
+    this.router.navigate(["../Form4"]);
   }
 
   // Validar que todos los campos campos de los formularios
