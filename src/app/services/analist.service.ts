@@ -20,6 +20,13 @@ export class AnalistService {
     private cookieService: CookieService
   ) {}
 
+  loggedIn() {
+    if (localStorage.getItem("idAnalist")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public authenticateAnalist(analistCredential: Object) {
     console.log("Autenticando...");
     let headers = new HttpHeaders();
@@ -69,4 +76,4 @@ export class AnalistService {
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
     return this.httpClient.get(`${this.endpointShowStatistics}`, params);
   }
-} 
+}

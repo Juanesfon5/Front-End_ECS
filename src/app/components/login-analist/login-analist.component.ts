@@ -44,10 +44,6 @@ export class LoginAnalistComponent implements OnInit {
     this.loginAnalist(AnalistCredential);
   }
 
-  analistCredential = {
-    id: "7591517953",
-    password: "X4SaGB"
-  };
   ngOnInit() {}
 
   loginAnalist(AnalistCredential) {

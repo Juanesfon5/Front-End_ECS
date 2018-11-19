@@ -1,14 +1,23 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { CollectorService } from "../app/services/collector.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthCollectorGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+  constructor(
+    private collectorService: CollectorService,
+    private router: Router
+  ) {}
+
+  canActivate(): boolean {
+    if (this.collectorService.loggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(["/loginCollector"]);
+      return false;
+    }
   }
 }

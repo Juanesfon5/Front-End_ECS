@@ -1,14 +1,20 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { AnalistService } from "../app/services/analist.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthAnalistGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+  constructor(private analistService: AnalistService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.analistService.loggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(["loginAnalist"]);
+      return false;
+    }
   }
 }

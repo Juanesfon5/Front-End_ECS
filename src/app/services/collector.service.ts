@@ -21,6 +21,15 @@ export class CollectorService {
     private router: Router,
     private cookieService: CookieService
   ) {}
+
+  loggedIn() {
+    if (localStorage.getItem("idCollector")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public authenticateCollector(CollectorCredential: Object) {
     console.log("Autenticando Collector...");
     let headers = new HttpHeaders();
@@ -74,12 +83,13 @@ export class CollectorService {
     return this.httpClient.get(`${this.endpointShowCodes}`, params);
   }
 
-  public asignarCodigos(credenciales: Object){
+  public asignarCodigos(credenciales: Object) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     //headers = headers.append('Authorization:Bearer ', 'ACCESSTOKEN');
-    
-    return this.httpClient.put(`${this.endpointDeliverCode}`,credenciales, {headers});
-  }
 
+    return this.httpClient.put(`${this.endpointDeliverCode}`, credenciales, {
+      headers
+    });
+  }
 }

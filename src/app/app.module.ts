@@ -63,6 +63,11 @@ export function maxValidationMessage(err, field) {
 
 //Guardian de rutas
 import { AuthGuard } from "./auth.guard";
+
+import { AuthAnalistGuard } from "./auth-analist.guard";
+
+import { AuthCollectorGuard } from "./auth-collector.guard";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,6 +141,9 @@ import { AuthGuard } from "./auth.guard";
     CollectorService,
     FormService,
     AuthGuard,
+    AuthCollectorGuard,
+    AuthAnalistGuard,
+
     GeneralService
   ],
   bootstrap: [AppComponent]

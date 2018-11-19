@@ -11,6 +11,8 @@ import { CensusMetricsComponent } from "./components/census-metrics/census-metri
 import { LoginCollectorComponent } from "./components/login-collector/login-collector.component";
 import { CodeManagementComponent } from "./components/code-management/code-management.component";
 import { AuthGuard } from "./auth.guard";
+import { AuthAnalistGuard } from "./auth-analist.guard";
+import { AuthCollectorGuard } from "./auth-collector.guard";
 
 const routes: Routes = [
   {
@@ -19,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "Form1",
@@ -47,7 +50,8 @@ const routes: Routes = [
   },
   {
     path: "CensusMetrics",
-    component: CensusMetricsComponent
+    component: CensusMetricsComponent,
+    canActivate: [AuthAnalistGuard]
   },
   {
     path: "loginCollector",
@@ -55,7 +59,8 @@ const routes: Routes = [
   },
   {
     path: "codeManagement",
-    component: CodeManagementComponent
+    component: CodeManagementComponent,
+    canActivate: [AuthCollectorGuard]
   }
 ];
 
