@@ -37,10 +37,10 @@ export class FormSection2Component implements OnInit {
   }
 
   submit() {
-    alert(JSON.stringify(this.model));
     let respuestas = JSON.stringify(this.model);
     localStorage.setItem("Respuesta2", respuestas);
     this.actualizar_respuestasS(2, respuestas);
+    this.router.navigate(["../Form3"]);
   }
 
   // Validar que todos los campos campos de los formularios

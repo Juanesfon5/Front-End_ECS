@@ -37,10 +37,11 @@ export class FormSection4Component implements OnInit {
   }
 
   submit() {
-    alert(JSON.stringify(this.model));
     let respuestas = JSON.stringify(this.model);
     localStorage.setItem("Respuesta4", respuestas);
     this.actualizar_respuestasS(4, respuestas);
+    alert("Si ya finalizó con todos los campos, presione 'Confirmar Respuestas' ");
+    this.router.navigate(["../home"]);
   }
 
   // Validar que todos los campos campos de los formularios

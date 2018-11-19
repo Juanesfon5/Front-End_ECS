@@ -43,6 +43,7 @@ export class FormSectionComponent implements OnInit {
     console.log(respuestas);
     localStorage.setItem("Respuesta1", respuestas);
     this.actualizar_respuestasS(1, respuestas);
+    this.router.navigate(["../Form2"]);
   }
 
   // Validar que todos los campos campos de los formularios
