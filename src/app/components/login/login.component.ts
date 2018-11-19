@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   success = false;
   token;
+  correctoLogin;
   constructor(
     private formBuilder: FormBuilder,
     private userServices: UserService,
@@ -46,9 +47,11 @@ export class LoginComponent implements OnInit {
     }
     this.userServices.authenticate(user).subscribe(data => {
       if (data["access_token"] == "null") {
+        this.spinner.hide();
         this.success = false;
-        return;
+        this.correctoLogin = false;
       } else {
+        this.correctoLogin = true;
         this.setCookies("access_token", data["access_token"]);
         this.setCookies("refresh_token", data["refresh_token"]);
         localStorage.setItem("ECN", user["ECN"]);
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["../home"]);
       }
     });
-    this.success = true;
+    this.submitted = true;
   }
 
   //Manejo de cookies

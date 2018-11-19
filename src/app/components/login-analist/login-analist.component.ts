@@ -62,6 +62,7 @@ export class LoginAnalistComponent implements OnInit {
           this.setCookies("refresh_token", data["refresh_token"]);
         } else {
           this.correctoLogin = false;
+          this.spinner.hide();
         }
       });
   }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/CensusMetrics">Analista</a>
   <button
     class="navbar-toggler"
@@ -29,46 +29,62 @@
   </div>
 </nav>
 
-<div class="jumbotron">
-  <h1 class="display-3">Metricas del Censo, Bolumbia 2019</h1>
-  <h2 class="display-3">Bolumbia 2019</h2>
-  <p class="lead">
+<div class="jumbotron bg-info">
+  <h1 class="display-6">Metricas del Censo, Bolumbia 2019</h1>
+  <h2 class="display-7">Bolumbia 2019</h2>
+  <p class="lead text-white">
     Aquí podrás encontrar todo referente al avance del censo, datos como cuantos
     formularios han sido confirmados, cuantos entregados y muchos datos más.
   </p>
-  <hr class="my-4" />
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div style="display: block">
-        <canvas
-          baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"
-        ></canvas>
+    <div class="col col-6">
+      <div
+        class="card text-white bg-secondary mb-3 bg-light "
+        style="max-width: 90rem;"
+      >
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h4 class="card-title">Estadísticas sobre formularios</h4>
+          <div *ngIf="peticionhecha" style="display: block">
+            <canvas
+              baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"
+            ></canvas>
+          </div>
+        </div>
       </div>
+
       <
     </div>
-    <div class="col">
+    <div class="col col-6">
       <div>
-        <div style="display: block">
-          <canvas
-            baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType"
-            (chartHover)="chartHovered2($event)"
-            (chartClick)="chartClicked2($event)"
-          ></canvas>
+        <div *ngIf="peticionhecha" style="display: block">
+          <div class="card text-white bg-light mb-3" style="max-width: 90rem;">
+            <div class="card-header"></div>
+            <div class="card-body">
+              <h4 class="card-title">Estadísticas sobre códigos</h4>
+            </div>
+            <canvas
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered2($event)"
+              (chartClick)="chartClicked2($event)"
+            ></canvas>
+          </div>
         </div>
-        <button (click)="randomize()">Update</button>
+
+        <!-- <button (click)="randomize()">Update</button> -->
       </div>
     </div>
   </div>

@@ -34,6 +34,13 @@
             Es obligatorio especificar CNF
           </div>
         </div>
+        <div
+          *ngIf="correctoLogin == false"
+          class="alert alert-dismissible alert-danger"
+        >
+          <strong>id o contraseña incorrectos, intente nuevamente</strong>
+        </div>
+
         <input
           class="btn btn-primary btn-block"
           type="submit"
@@ -43,3 +50,9 @@
     </div>
   </div>
 </section>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="large"
+  color="#fff"
+  type="ball-8bits"
+></ngx-spinner>

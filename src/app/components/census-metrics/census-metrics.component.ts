@@ -18,11 +18,21 @@ export class CensusMetricsComponent implements OnInit {
     this.getStatistics();
   }
 
+  public peticionhecha = false;
+  public pieChartData: number[] = [0, 0];
+  public pieChartType: string = "pie";
+  public barChartData: any[];
   getStatistics() {
-    this.analistService.getStatistics().subscribe(data => {
-      //console.log(data);
-      this.pieChartData[0] = data["confirmed_forms"];
-      this.pieChartData[1] = data["no_confirmed_forms"];
+    this.analistService.getStatistics().subscribe(datos => {
+      this.pieChartData[0] = datos["confirmed_forms"];
+      this.pieChartData[1] = datos["no_confirmed_forms"];
+
+      this.barChartData = [
+        { data: [datos["delivered_forms"]], label: "Códigos Entregadas" },
+        { data: [datos["no_delivered_forms"]], label: "Códigos por Entregar" }
+      ];
+
+      this.peticionhecha = true;
     });
   }
   // Primer Grafico
@@ -30,8 +40,6 @@ export class CensusMetricsComponent implements OnInit {
     "Formularios confirmados",
     "Formularios No confirmados"
   ];
-  public pieChartData: number[] = [0, 0];
-  public pieChartType: string = "pie";
 
   // events
   public chartClicked(e: any): void {
@@ -51,11 +59,6 @@ export class CensusMetricsComponent implements OnInit {
   public barChartLabels: string[] = [""];
   public barChartType: string = "bar";
   public barChartLegend: boolean = true;
-
-  public barChartData: any[] = [
-    { data: [65], label: "Códigos Entregadas" },
-    { data: [28], label: "Códigos por Entregar" }
-  ];
 
   // events
   public chartClicked2(e: any): void {
