@@ -99,8 +99,6 @@ export class FormSection4Component implements OnInit {
       });
   }
 
- 
-
   actualizar_respuestasS(number: any, form: any) {
     this.formServ
       .actualizar_seccionEspecifica(this.response_login, number, form)
