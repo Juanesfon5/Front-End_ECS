@@ -41,6 +41,8 @@ export class FormSectionComponent implements OnInit {
     let respuestas = JSON.stringify(this.model);
     //alert(JSON.stringify(this.model));
     console.log(respuestas);
+    localStorage.setItem("Respuesta1", respuestas);
+    this.actualizar_respuestasS(1, respuestas);
   }
 
   // Validar que todos los campos campos de los formularios

@@ -37,19 +37,21 @@ export class FormSection3Component implements OnInit {
   }
 
   submit() {
+    let respuestas = JSON.stringify(this.model;
     alert(JSON.stringify(this.model));
+    console.log(respuestas)
   }
 
   // Validar que todos los campos campos de los formularios
   confirmar_envioFormulario() {
     this.formServ.confirmar_envio(this.response_login).subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
   }
 
   conseguir_cedulas() {
     this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
-      console.log(data);
+      //console.log(data);
     });
   }
 
@@ -73,8 +75,8 @@ export class FormSection3Component implements OnInit {
         //localStorage.setItem("form1",test);*/
       let s = data["seccion"][0]["value"][0];
       let sa = JSON.stringify(s)
-      console.log(s);
-      console.log(sa);
+      //console.log(s);
+      //console.log(sa);
       localStorage.setItem("form",sa);
       this.pintar_formulario();
     });
@@ -83,7 +85,7 @@ export class FormSection3Component implements OnInit {
   pintar_formulario() {
     //window.location.reload();
     let form1 = localStorage.getItem("form");
-    console.log(form1);
+    //console.log(form1);
     let obj = JSON.parse(form1);
     //console.log(obj);
     //et ase = localStorage.getItem("form1")
@@ -98,7 +100,7 @@ export class FormSection3Component implements OnInit {
     this.formServ
       .pedir_respuestaPersona(this.response_login, number)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       });
   }
 
@@ -106,7 +108,7 @@ export class FormSection3Component implements OnInit {
     this.formServ
       .actualizar_respuestaFormulario(this.response_login, number, form)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       });
   }
 
@@ -114,7 +116,7 @@ export class FormSection3Component implements OnInit {
     this.formServ
       .actualizar_seccionEspecifica(this.response_login, number, form)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       });
   }
 }
