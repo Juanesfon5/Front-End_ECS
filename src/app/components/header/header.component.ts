@@ -25,6 +25,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/"]);
   }
   confirmar() {
+
+    this.response_login = {
+      ECN: localStorage.getItem("ECN"),
+      CFN: localStorage.getItem("CFN")
+    };
+
     let R1 = localStorage.getItem("Respuesta1");
     let R2 = localStorage.getItem("Respuesta2");
     let R3 = localStorage.getItem("Respuesta3");
@@ -39,8 +45,8 @@ export class HeaderComponent implements OnInit {
     if(T1 || T2 || T4){
       alert("Aun faltan campos por completar");
     } else {
-      //alert("Enviando formulario");
-      //this.formServ.
+      console.log("Enviando formulario...");
+      this.formServ.confirmar_envio(this.response_login)
     }
     
     //valir 1 por 1 si tiene todos los campos, en caso contrario alerta diciendo la seccion que hace falta por llenar
