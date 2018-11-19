@@ -97,14 +97,6 @@ export class FormSection2Component implements OnInit {
       });
   }
 
-  actualizar_respuestasF(number: any, form: any) {
-    this.formServ
-      .actualizar_respuestaFormulario(this.response_login, number, form)
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
-
   actualizar_respuestasS(number: any, form: any) {
     this.formServ
       .actualizar_seccionEspecifica(this.response_login, number, form)

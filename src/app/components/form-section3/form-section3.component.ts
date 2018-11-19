@@ -65,7 +65,7 @@ export class FormSection3Component implements OnInit {
 
   submit() {
 
-    let respuestas =this.model["questions"]);
+    let respuestas = this.model["questions"];
 
     respuestas.forEach(element => {
       let cedula = element["numero_identificación"];

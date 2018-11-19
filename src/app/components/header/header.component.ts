@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
+  response_login = {};
   constructor(
     private formServ: FormService,
     private router: Router,
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit {
     let T4 = this.isEmpty(JSON.parse(R4));
     console.log(T1);
 
-    if(T1 || T2 || T4){
+    if(T1 || T2 || T3 || T4){
       alert("Aun faltan campos por completar");
     } else {
       console.log("Enviando formulario...");
