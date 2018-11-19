@@ -12,8 +12,8 @@ export class UserService {
     https://github.com/josearangos/ECS-Backend/issues/10
   
   */
-  readonly endpointUserLogin = environment.endpointUserLogin;
-  readonly endpointUserTokenRefresh = environment.endpointUserTokenRefresh;
+  readonly endpointUserLogin = environment["endpointUserLogin"];
+  readonly endpointUserTokenRefresh = environment["endpointUserTokenRefresh"];
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService

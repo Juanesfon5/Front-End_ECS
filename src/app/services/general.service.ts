@@ -16,7 +16,7 @@ export class GeneralService {
     private cookieService: CookieService,
     private userService: UserService
   ) {}
-  readonly endpointCurrentEntity = environment.endpointCurrentEntity;
+  readonly endpointCurrentEntity = environment["endpointCurrentEntity"];
 
   public get_credenciales(tipo: String) {
     console.log("Consiguiendo credenciales...");

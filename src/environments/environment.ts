@@ -3,42 +3,39 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  urlBase: "https://temporal-ecs.herokuapp.com/ECS/Api/v1/",
-  endpointUserLogin: "https://temporal-ecs.herokuapp.com/ECS/Api/v1/user/login",
+  urlBase: "http://168.1.140.145:31071/ECS/Api/v1/",
+  endpointUserLogin: "http://168.1.140.145:31071/ECS/Api/v1/user/login",
   endpointUserTokenRefresh:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/user/tokenRefresh",
-  endpointAnalistLogin:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/analist/login",
+    "http://168.1.140.145:31071/ECS/Api/v1/user/tokenRefresh",
+  endpointAnalistLogin: "http://168.1.140.145:31071/ECS/Api/v1/analist/login",
   endpointAnalistInfo:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/analist/show_analist",
+    "http://168.1.140.145:31071/ECS/Api/v1/analist/show_analist",
   endpointShowStatistics:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/general/show_statistics",
+    "http://168.1.140.145:31071/ECS/Api/v1/general/show_statistics",
   endpointAnalistTokenRefresh:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/analist/tokenRefresh",
+    "http://168.1.140.145:31071/ECS/Api/v1/analist/tokenRefresh",
   endpointCollectorLogin:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/collector/login",
+    "http://168.1.140.145:31071/ECS/Api/v1/collector/login",
   endpointCollectorInfo:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/collector/show_collector",
+    "http://168.1.140.145:31071/ECS/Api/v1/collector/show_collector",
   endpointShowCodes:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/collector/show_codes",
+    "http://168.1.140.145:31071/ECS/Api/v1/collector/show_codes",
   endpointCollectorTokenRefresh:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/collector/tokenRefresh",
+    "http://168.1.140.145:31071/ECS/Api/v1/collector/tokenRefresh",
   endpointDeliverCode:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/collector/deliver_code",
-  endpointFormConfirm:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/confirm",
+    "http://168.1.140.145:31071/ECS/Api/v1/collector/deliver_code",
+  endpointFormConfirm: "http://168.1.140.145:31071/ECS/Api/v1/form/confirm",
   endpointFamliyIdentifiers:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/family_identifiers/",
+    "http://168.1.140.145:31071/ECS/Api/v1/form/family_identifiers/",
   endpointFormFindSection:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/findSection/",
+    "http://168.1.140.145:31071/ECS/Api/v1/form/findSection/",
   endpointGetFormMember:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/user/get_form/member",
+    "http://168.1.140.145:31071/ECS/Api/v1/form/user/get_form/member",
   endpointInsertUpdateAnswersMember:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/user/insertUpdate_answers/member",
+    "http://168.1.140.145:31071/ECS/Api/v1/form/user/insertUpdate_answers/member",
   endpointFormUpdateSection:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/form/updateSection",
-  endpointCurrentEntity:
-    "https://temporal-ecs.herokuapp.com/ECS/Api/v1/current/entity"
+    "http://168.1.140.145:31071/ECS/Api/v1/form/updateSection",
+  endpointCurrentEntity: "http://168.1.140.145:31071/ECS/Api/v1/current/entity"
 };
 
 /*

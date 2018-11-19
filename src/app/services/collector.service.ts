@@ -9,12 +9,12 @@ import { HttpParamsOptions } from "@angular/common/http/src/params";
   providedIn: "root"
 })
 export class CollectorService {
-  readonly endpointCollectorLogin = environment.endpointCollectorLogin;
-  readonly endpointCollectorInfo = environment.endpointCollectorInfo;
+  readonly endpointCollectorLogin = environment["endpointCollectorLogin"];
+  readonly endpointCollectorInfo = environment["endpointCollectorInfo"];
   readonly endpointCollectorTokenRefresh =
-    environment.endpointCollectorTokenRefresh;
-  readonly endpointShowCodes = environment.endpointShowCodes;
-  readonly endpointDeliverCode = environment.endpointDeliverCode;
+    environment["endpointCollectorTokenRefresh"];
+  readonly endpointShowCodes = environment["endpointShowCodes"];
+  readonly endpointDeliverCode = environment["endpointDeliverCode"];
 
   constructor(
     private httpClient: HttpClient,

@@ -9,11 +9,11 @@ import { HttpParamsOptions } from "@angular/common/http/src/params";
   providedIn: "root"
 })
 export class AnalistService {
-  readonly endpointAnalistLogin = environment.endpointAnalistLogin;
-  readonly endpointAnalistInfo = environment.endpointAnalistInfo;
-  readonly endpointShowStatistics = environment.endpointShowStatistics;
+  readonly endpointAnalistLogin = environment["endpointAnalistLogin"];
+  readonly endpointAnalistInfo = environment["endpointAnalistInfo"];
+  readonly endpointShowStatistics = environment["endpointShowStatistics"];
   readonly endpointAnalistTokenRefresh =
-    environment.endpointAnalistTokenRefresh;
+    environment["endpointAnalistTokenRefresh"];
   constructor(
     private httpClient: HttpClient,
     private router: Router,

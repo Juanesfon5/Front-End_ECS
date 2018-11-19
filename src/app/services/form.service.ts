@@ -10,13 +10,13 @@ import { CookieService } from "angular2-cookie/core";
 })
 export class FormService {
   number;
-  readonly endpointFormConfirm = environment.endpointFormConfirm;
-  readonly endpointFamliyIdentifiers = environment.endpointFamliyIdentifiers;
-  readonly endpointFormFindSection = environment.endpointFormFindSection;
-  readonly endpointGetFormMember = environment.endpointGetFormMember;
+  readonly endpointFormConfirm = environment["endpointFormConfirm"];
+  readonly endpointFamliyIdentifiers = environment["endpointFamliyIdentifiers"];
+  readonly endpointFormFindSection = environment["endpointFormFindSection"];
+  readonly endpointGetFormMember = environment["endpointGetFormMember"];
   readonly endpointInsertUpdateAnswersMember =
-    environment.endpointInsertUpdateAnswersMember;
-  readonly endpointFormUpdateSection = environment.endpointFormUpdateSection;
+    environment["endpointInsertUpdateAnswersMember"];
+  readonly endpointFormUpdateSection = environment["endpointFormUpdateSection"];
 
   constructor(
     private httpClient: HttpClient,
