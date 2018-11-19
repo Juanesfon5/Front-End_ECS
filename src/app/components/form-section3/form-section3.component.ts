@@ -14,7 +14,23 @@ import { Router } from "@angular/router";
 export class FormSection3Component implements OnInit {
   seccion;
   form = new FormGroup({});
-  model: any = {};
+  model = {
+    questions: [
+      {
+        "nombrePersona": "",
+        "identificación": "",
+        "numero_identificación": "",
+        "relacion": "",
+        "genero": "",
+        "edad": "",
+        "fecha_nacimiento": "",
+        "educacion": "",
+        "año_alto": "",
+        "tipo_educacion": "",
+        "indigena": ""
+      }
+    ]
+  };
   options: FormlyFormOptions = {};
   submitted = false;
   success = false;
@@ -29,17 +45,28 @@ export class FormSection3Component implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.conseguir_seccion();
     this.response_login = {
       ECN: localStorage.getItem("ECN"),
       CFN: localStorage.getItem("CFN")
     };
+    this.decisionDeCarga();
+  }
+
+  decisionDeCarga() {
+    this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
+      let cedulasFamiliares = data["family_identifiers"];
+      //if (cedulasFamiliares.length == 0) {
+      this.conseguir_seccion();
+      //} else {
+      this.conseguir_respuestaP(cedulasFamiliares);
+      //  }
+    });
   }
 
   submit() {
-    let respuestas = JSON.stringify(this.model;
+    let respuestas = JSON.stringify(this.model);
     alert(JSON.stringify(this.model));
-    console.log(respuestas)
+    console.log(respuestas);
   }
 
   // Validar que todos los campos campos de los formularios
@@ -51,7 +78,7 @@ export class FormSection3Component implements OnInit {
 
   conseguir_cedulas() {
     this.formServ.pedir_cedulas(this.response_login).subscribe(data => {
-      //console.log(data);
+      console.log(data);
     });
   }
 
@@ -74,10 +101,10 @@ export class FormSection3Component implements OnInit {
         this.pintar_formulario();
         //localStorage.setItem("form1",test);*/
       let s = data["seccion"][0]["value"][0];
-      let sa = JSON.stringify(s)
+      let sa = JSON.stringify(s);
       //console.log(s);
       //console.log(sa);
-      localStorage.setItem("form",sa);
+      localStorage.setItem("form", sa);
       this.pintar_formulario();
     });
   }
@@ -96,12 +123,19 @@ export class FormSection3Component implements OnInit {
     localStorage.removeItem("form");
   }
 
-  conseguir_respuestaP(number: any) {
-    this.formServ
-      .pedir_respuestaPersona(this.response_login, number)
-      .subscribe(data => {
-        //console.log(data);
-      });
+  conseguir_respuestaP(cedulasFamiliares: any) {
+    let questionsR = new Array();
+    cedulasFamiliares.forEach(number => {
+      this.formServ
+        .pedir_respuestaPersona(this.response_login, number)
+        .subscribe(data => {
+          console.log(data["form"]["respuestas"]);
+          questionsR.push(data["form"]["respuestas"]);
+        });
+    });
+    this.model = {
+      questions: questionsR
+    };
   }
 
   actualizar_respuestasF(number: any, form: any) {
