@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { CookieService } from "angular2-cookie/core";
 import { Router } from "@angular/router";
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-login",
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userServices: UserService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -28,10 +29,10 @@ export class LoginComponent implements OnInit {
       ECN: ["", Validators.required],
       CFN: ["", Validators.required]
     });
-    
   }
 
   onSubmit() {
+    this.spinner.show();
     this.submitted = true;
     if (this.messageForm.invalid) {
       return;
@@ -44,11 +45,10 @@ export class LoginComponent implements OnInit {
       }
     }
     this.userServices.authenticate(user).subscribe(data => {
-      console.log(data["access_token"])
-      if (data["access_token"] == "null"){
+      if (data["access_token"] == "null") {
         this.success = false;
         return;
-      } else{
+      } else {
         this.setCookies("access_token", data["access_token"]);
         this.setCookies("refresh_token", data["refresh_token"]);
         localStorage.setItem("ECN", user["ECN"]);

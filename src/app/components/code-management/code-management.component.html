@@ -1,26 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/codeManagement">Census Collector</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarColor01"
+    aria-controls="navbarColor01"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/codeManagement"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/codeManagement">Códigos</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0 ">
+      <a class="nav-link text-white" (click)="cerrarSesion()">Cerrar sesión</a>
+    </div>
+  </div>
+</nav>
+<br />
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 d-flex justify-content-center">
       <div class="card border-primary mb-3" style="width: 100%">
         <div class="card-header">
           <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;"> Información del recolector </font>
+            <font style="vertical-align: inherit;">
+              Información del recolector
+            </font>
           </font>
         </div>
         <div class="card-body">
           <p class="card-text">
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">id: {{collector.id}}</font>
+              <font style="vertical-align: inherit;"
+                >id: {{ collector.id }}</font
+              >
             </font>
           </p>
           <p class="card-text">
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Nombre: {{collector.fullName}}</font>
+              <font style="vertical-align: inherit;"
+                >Nombre: {{ collector.fullName }}</font
+              >
             </font>
           </p>
           <p class="card-text">
             <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Telefono: {{collector.cellphone}}</font>
+              <font style="vertical-align: inherit;"
+                >Telefono: {{ collector.cellphone }}</font
+              >
             </font>
           </p>
         </div>
@@ -60,20 +99,33 @@
             <tr *ngFor="let item of codes" class="table-light">
               <th *ngIf="item['entregado'] == false" scope="row">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;"> {{item["ECN"]}} </font>
+                  <font style="vertical-align: inherit;">
+                    {{ item["ECN"] }}
+                  </font>
                 </font>
               </th>
               <td *ngIf="item['entregado'] == false">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;"> {{item["CFN"]}} </font>
+                  <font style="vertical-align: inherit;">
+                    {{ item["CFN"] }}
+                  </font>
                 </font>
               </td>
               <td *ngIf="item['entregado'] == false">
                 <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;"> {{item["address"]}} </font>
+                  <font style="vertical-align: inherit;">
+                    {{ item["address"] }}
+                  </font>
                 </font>
               </td>
-              <td *ngIf="item['entregado'] == false"><button class="btn btn-success" (click)="asignar_entregados(item['ECN'], item['CFN'])">Entregado</button></td>
+              <td *ngIf="item['entregado'] == false">
+                <button
+                  class="btn btn-success"
+                  (click)="asignar_entregados(item['ECN'], item['CFN'])"
+                >
+                  Entregado
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

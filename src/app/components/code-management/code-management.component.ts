@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CollectorService } from "../../services/collector.service";
+import { Router } from "@angular/router";
+import { CookieService } from "angular2-cookie/core";
+
 @Component({
   selector: "app-code-management",
   templateUrl: "./code-management.component.html",
@@ -9,7 +12,11 @@ export class CodeManagementComponent implements OnInit {
   collector = { id: "", fullName: "", cellphone: "" };
   codes = null;
 
-  constructor(private collectorService: CollectorService) {}
+  constructor(
+    private collectorService: CollectorService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     let kappa = {};
@@ -42,5 +49,12 @@ export class CodeManagementComponent implements OnInit {
     this.collectorService.asignarCodigos(credenciales).subscribe(data => {
       alert(data["message"]);
     });
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem("idAnalist");
+    this.cookieService.remove("access_token");
+    this.cookieService.remove("refresh_token");
+    this.router.navigate(["/loginAnalist"]);
   }
 }

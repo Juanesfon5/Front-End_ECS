@@ -16,18 +16,20 @@
     <ul class="navbar-nav mr-auto">
       <script type="text/typescript" src=""></script>
       <script>
-          function decryptfun() {
-            var pass = "hjubjbjhdgyuwj";
-            var encrtoken = "abcdefghijklmn";
-        
-            //var p = lib.decrypt(encrtoken, atob(pass)); //USE THIS IN YOUR CASE
-            var p = "test"; //just for example
-            alert(p);
-          }
-        </script>
-      <li class="nav-item"><a class="nav-link" routerLink="../home">Home</a></li>
+        function decryptfun() {
+          var pass = "hjubjbjhdgyuwj";
+          var encrtoken = "abcdefghijklmn";
+
+          //var p = lib.decrypt(encrtoken, atob(pass)); //USE THIS IN YOUR CASE
+          var p = "test"; //just for example
+          alert(p);
+        }
+      </script>
       <li class="nav-item">
-        <a class="nav-link" routerLink="../Form1">Formulario 1</a> 
+        <a class="nav-link" routerLink="../home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="../Form1">Formulario 1</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="../Form2">Formulario 2</a>
@@ -36,7 +38,11 @@
         <a class="nav-link" routerLink="../Form3">Formulario 3</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" routerLink="../Form4">Formulario 4</a>
+        <a class="nav-link" routerLink="../Form4">Formulario 4</a>
+      </li>
     </ul>
+  </div>
+  <div class="form-inline my-2 my-lg-0 ">
+    <a class="nav-link text-white" (click)="cerrarSesion()">Cerrar sesión</a>
   </div>
 </nav>

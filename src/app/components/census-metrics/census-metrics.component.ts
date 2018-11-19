@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AnalistService } from "../../services/analist.service";
+import { CookieService } from "angular2-cookie/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-census-metrics",
@@ -7,7 +9,11 @@ import { AnalistService } from "../../services/analist.service";
   styleUrls: ["./census-metrics.component.scss"]
 })
 export class CensusMetricsComponent implements OnInit {
-  constructor(private analistService: AnalistService) {}
+  constructor(
+    private analistService: AnalistService,
+    private cookieService: CookieService,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.getStatistics();
   }
@@ -74,5 +80,12 @@ export class CensusMetricsComponent implements OnInit {
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
     this.barChartData = clone;
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem("idAnalist");
+    this.cookieService.remove("access_token");
+    this.cookieService.remove("refresh_token");
+    this.router.navigate(["/loginAnalist"]);
   }
 }
