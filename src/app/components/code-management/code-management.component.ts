@@ -22,7 +22,7 @@ export class CodeManagementComponent implements OnInit {
     let kappa = {};
     this.getInfoCollector(localStorage.getItem("idCollector"));
     //this.asignar_entregados(kappa);
-    this.getCodesCollector("0527903051");
+    this.getCodesCollector(localStorage.getItem("idCollector"));
   }
 
   getInfoCollector(id) {
