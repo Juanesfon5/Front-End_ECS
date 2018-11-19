@@ -38,7 +38,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 //Graficador
 import { ChartsModule } from "ng2-charts";
-import { RepeatTypeComponent } from './components/form-section3/repeat-section.type';
+import { RepeatTypeComponent } from "./components/form-section3/repeat-section.type";
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AlertModule } from "ngx-alerts";
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -78,6 +81,8 @@ export function maxValidationMessage(err, field) {
     RepeatTypeComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    AlertModule.forRoot({ maxMessages: 3, timeout: 2000 }),
     BrowserModule,
     ChartsModule,
     HttpClientModule,
@@ -96,7 +101,7 @@ export function maxValidationMessage(err, field) {
       ],
       types: [
         { name: "string", extends: "input" },
-        { name: 'repeat', component: RepeatTypeComponent },
+        { name: "repeat", component: RepeatTypeComponent },
         {
           name: "number",
           extends: "input",

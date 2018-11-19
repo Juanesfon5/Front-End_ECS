@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CollectorService } from "../../services/collector.service";
 import { Router } from "@angular/router";
 import { CookieService } from "angular2-cookie/core";
+import { AlertService } from "ngx-alerts";
 
 @Component({
   selector: "app-code-management",
@@ -15,7 +16,8 @@ export class CodeManagementComponent implements OnInit {
   constructor(
     private collectorService: CollectorService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -47,7 +49,10 @@ export class CodeManagementComponent implements OnInit {
     };
     /// Indicar que los CODIGOS ENTREGADOS
     this.collectorService.asignarCodigos(credenciales).subscribe(data => {
-      alert(data["message"]);
+      this.alertService.success("Código entregado!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     });
   }
 
