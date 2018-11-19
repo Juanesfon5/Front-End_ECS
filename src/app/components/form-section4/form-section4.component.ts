@@ -5,6 +5,8 @@ import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 import { FormService } from "../../services/form.service";
 import { GeneralService } from "../../services/general.service";
 import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { AlertService } from "ngx-alerts";
 
 @Component({
   selector: "app-form-section4",
@@ -25,10 +27,13 @@ export class FormSection4Component implements OnInit {
     private formServ: FormService,
     private generalService: GeneralService,
     private formlyJsonschema: FormlyJsonschema,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.conseguir_seccion();
     this.response_login = {
       ECN: localStorage.getItem("ECN"),
@@ -37,11 +42,12 @@ export class FormSection4Component implements OnInit {
   }
 
   submit() {
+    this.spinner.show();
     let respuestas = JSON.stringify(this.model);
     localStorage.setItem("Respuesta4", respuestas);
     this.actualizar_respuestasS(4, respuestas);
-    alert(
-      "Si ya finalizó con todos los campos, presione 'Confirmar Respuestas' "
+    this.alertService.success(
+      "Si ya finalizó con todos los campos, presione 'Confirmar Respuestas'"
     );
     this.router.navigate(["../home"]);
   }
@@ -72,6 +78,7 @@ export class FormSection4Component implements OnInit {
       localStorage.setItem("form", s);
       //console.log(s);
       let modelo = data["seccion"][0]["respuestas"];
+      this.spinner.hide();
       this.pintar_formulario(modelo);
       //localStorage.setItem("form1",test);
     });
@@ -104,6 +111,7 @@ export class FormSection4Component implements OnInit {
       .actualizar_seccionEspecifica(this.response_login, number, form)
       .subscribe(data => {
         console.log(data);
+        this.spinner.hide();
       });
   }
 }

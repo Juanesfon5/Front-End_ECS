@@ -5,6 +5,7 @@ import { FormlyJsonschema } from "@ngx-formly/core/json-schema";
 import { FormService } from "../../services/form.service";
 import { GeneralService } from "../../services/general.service";
 import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-form-section3",
@@ -41,10 +42,12 @@ export class FormSection3Component implements OnInit {
     private formServ: FormService,
     private generalService: GeneralService,
     private formlyJsonschema: FormlyJsonschema,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.response_login = {
       ECN: localStorage.getItem("ECN"),
       CFN: localStorage.getItem("CFN")
@@ -58,6 +61,7 @@ export class FormSection3Component implements OnInit {
   }
 
   submit() {
+    this.spinner.show();
     let respuestas = this.model;
     console.log(respuestas);
     this.actualizar_respuestasPersona(respuestas);
@@ -97,6 +101,7 @@ export class FormSection3Component implements OnInit {
       //console.log(s);
       //console.log(sa);
       localStorage.setItem("form", sa);
+      this.spinner.hide();
       this.pintar_formulario();
     });
   }
@@ -131,6 +136,7 @@ export class FormSection3Component implements OnInit {
       .actualizar_respuestaFormularioPersona(this.response_login, form)
       .subscribe(data => {
         console.log(data);
+        this.spinner.hide();
       });
   }
 

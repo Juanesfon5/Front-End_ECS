@@ -1,11 +1,31 @@
-<div><h1 style="text-align: center; padding: 1%; font-family:Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">ECS Bolumbia</h1></div>
+<div>
+  <h1
+    style="text-align: center; padding: 1%; font-family:Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; "
+  >
+    ECS Bolumbia
+  </h1>
+</div>
 <app-header></app-header>
 
-
-  <form [formGroup]="form" class="form-signin" (ngSubmit)="submit()">
-    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
-      <button type="submit" class="btn btn-primary submit-button" [disabled]="!form.valid">
-        Submit
-      </button>
-    </formly-form>
-  </form>
+<form [formGroup]="form" class="form-signin" (ngSubmit)="submit()">
+  <formly-form
+    [model]="model"
+    [fields]="fields"
+    [options]="options"
+    [form]="form"
+  >
+    <button
+      type="submit"
+      class="btn btn-primary submit-button"
+      [disabled]="!form.valid"
+    >
+      Submit
+    </button>
+  </formly-form>
+</form>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="large"
+  color="#fff"
+  type="ball-8bits"
+></ngx-spinner>
